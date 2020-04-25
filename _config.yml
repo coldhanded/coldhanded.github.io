@@ -43,8 +43,8 @@ social_media:
   twitter: helpitscold
   # unsplash: your_username
   # vk: your_username
-  website: https://coldhands.xyz
-  # youtube: your_username
+  # website: https://coldhands.xyz
+  youtube: https://www.youtube.com/channel/UC8hPf7LLjHG_2AECigHZ3Pg
 
 topics:
   - name: CSS
