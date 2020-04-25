@@ -1,0 +1,17 @@
+---
+title: "RX-78-2 3.0 Master Grade"
+---
+
+![1](/https://i.imgur.com/mR939oT.jpg# thumbnail bordered)
+
+img[src~="thumbnail"] {
+   width:150px;
+   height:100px;
+}
+img[src~="bordered"] {
+   border: 1px solid black;
+}
+
+#![2](/https://i.imgur.com/bxRieEn.jpg# thumbnail bordered)
+#![3](/https://i.imgur.com/UgVSN5b.jpg# thumbnail bordered)
+#![4](/https://i.imgur.com/YKJX1wi.jpg# thumbnail bordered)
