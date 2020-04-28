@@ -1,5 +1,6 @@
 ---
 title: "Astray Blue Frame 2.0 Master Grade"
+permalink: "coldhands.xyz/Blueframe"
 ---
 <img src="/gunpla/RX78_1.jpg" width="650" height="500" />
 <img src="/gunpla/RX78_2.jpg" width="650" height="500" />
