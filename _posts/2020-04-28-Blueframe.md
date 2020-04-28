@@ -1,4 +1,12 @@
 ---
-title: "Astray Blue Frame 2.0 Master Grade"
-permalink: "/Blue-frame"
+title: Astray Blue Frame Build
+permalink: /Blue-frame
+tags:
+  - Gunpla
+  - Blue-frame
+categories:
+  - Gunpla
 ---
+
+
+# Coming Soon...
