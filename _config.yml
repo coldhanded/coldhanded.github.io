@@ -46,7 +46,7 @@ social_media:
   # website: https://coldhands.xyz
   # youtube: channel/UC8hPf7LLjHG_2AECigHZ3Pg
 
-topics:
+#topics:
   - name: Arch Linux
     web_url: https://github.com/topics/arch
     image_url: https://raw.githubusercontent.com/github/explore/7b8474be525e3f210d3c8d60a32beca4bfc2895b/topics/archlinux/archlinux.png
