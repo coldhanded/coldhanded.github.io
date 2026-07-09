@@ -49,11 +49,11 @@ Play services.
 
 Current examples include:
 
-  Breezy Weather
+  Capy Reader
   HeliBoard
   Markor
   Syncthing
-  Ultrasonic
+  Tempus
   Vanadium
 
 NOTES AND FILES //

@@ -32,7 +32,7 @@ HARDWARE //
 
   Intel Core i5-4670
   Gigabyte GA-Z97X-GAMING 5
-  Approximately 16 GB RAM
+  16 GB Corsair Vengeance Pro DDR3-2133
   Intel 660p 1 TB NVMe system drive
   Seagate 3 TB media drive
   Lian Li Lancool PC-K62
