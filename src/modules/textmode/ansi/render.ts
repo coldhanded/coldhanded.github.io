@@ -104,35 +104,144 @@ function renderBlocks(input: string, width: number): string[] {
 
 function renderPlainAnsiLines(input: string, width: number): string[] {
   const output: string[] = [];
-  let lineChunks: RenderChunk[] = [];
-  let lineWidth = 0;
+  let logicalLine: RenderChunk[] = [];
 
   for (const token of parseInlineAnsi(input)) {
     for (const char of token.text) {
       if (char === "\n") {
-        flushLine();
+        output.push(...renderWordWrappedChunks(logicalLine, width));
+        logicalLine = [];
         continue;
       }
 
-      const charWidth = cellWidth(char);
-
-      if (lineWidth + charWidth > width && lineWidth > 0) {
-        flushLine();
-      }
-
-      appendChunk(lineChunks, { text: char, role: token.role });
-      lineWidth += charWidth;
+      appendChunk(logicalLine, { text: char, role: token.role });
     }
   }
 
-  flushLine();
+  output.push(...renderWordWrappedChunks(logicalLine, width));
   return output;
+}
 
-  function flushLine(): void {
-    output.push(renderChunks(lineChunks));
-    lineChunks = [];
-    lineWidth = 0;
+function renderWordWrappedChunks(chunks: RenderChunk[], width: number): string[] {
+  const characters = splitChunksIntoCharacters(chunks);
+
+  if (characters.length === 0) {
+    return [""];
   }
+
+  const output: string[] = [];
+  let remaining = characters;
+
+  while (characterLineWidth(remaining) > width) {
+    const fitCount = countCharactersThatFit(remaining, width);
+
+    if (
+      fitCount < remaining.length &&
+      /\s/u.test(remaining[fitCount].text) &&
+      hasVisibleCharacterBefore(remaining, fitCount)
+    ) {
+      output.push(renderCharacterLine(remaining.slice(0, fitCount)));
+      remaining = trimLeadingWhitespace(remaining.slice(fitCount));
+      continue;
+    }
+
+    const whitespaceIndex = findLastBreakableWhitespace(remaining, fitCount);
+
+    if (whitespaceIndex >= 0) {
+      output.push(renderCharacterLine(trimTrailingWhitespace(remaining.slice(0, whitespaceIndex))));
+      remaining = trimLeadingWhitespace(remaining.slice(whitespaceIndex + 1));
+      continue;
+    }
+
+    const hardBreak = Math.max(fitCount, 1);
+    output.push(renderCharacterLine(remaining.slice(0, hardBreak)));
+    remaining = remaining.slice(hardBreak);
+  }
+
+  output.push(renderCharacterLine(remaining));
+  return output;
+}
+
+function splitChunksIntoCharacters(chunks: RenderChunk[]): RenderChunk[] {
+  const characters: RenderChunk[] = [];
+
+  for (const chunk of chunks) {
+    for (const char of chunk.text) {
+      characters.push({ text: char, role: chunk.role });
+    }
+  }
+
+  return characters;
+}
+
+function countCharactersThatFit(characters: RenderChunk[], width: number): number {
+  let usedWidth = 0;
+
+  for (let index = 0; index < characters.length; index += 1) {
+    const nextWidth = cellWidth(characters[index].text);
+
+    if (usedWidth + nextWidth > width) {
+      return index;
+    }
+
+    usedWidth += nextWidth;
+  }
+
+  return characters.length;
+}
+
+function findLastBreakableWhitespace(characters: RenderChunk[], fitCount: number): number {
+  for (let index = fitCount - 1; index >= 0; index -= 1) {
+    if (/\s/u.test(characters[index].text) && hasVisibleCharacterBefore(characters, index)) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
+function hasVisibleCharacterBefore(characters: RenderChunk[], end: number): boolean {
+  for (let index = 0; index < end; index += 1) {
+    if (!/\s/u.test(characters[index].text)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function trimLeadingWhitespace(characters: RenderChunk[]): RenderChunk[] {
+  let start = 0;
+
+  while (start < characters.length && /\s/u.test(characters[start].text)) {
+    start += 1;
+  }
+
+  return characters.slice(start);
+}
+
+function trimTrailingWhitespace(characters: RenderChunk[]): RenderChunk[] {
+  let end = characters.length;
+
+  while (end > 0 && /\s/u.test(characters[end - 1].text)) {
+    end -= 1;
+  }
+
+  return characters.slice(0, end);
+}
+
+function characterLineWidth(characters: RenderChunk[]): number {
+  return characters.reduce((total, character) => total + cellWidth(character.text), 0);
+}
+
+function renderCharacterLine(characters: RenderChunk[]): string {
+  const chunks: RenderChunk[] = [];
+
+  for (const character of characters) {
+    appendChunk(chunks, character);
+  }
+
+  return renderChunks(chunks);
 }
 
 function renderInkBlock(lines: string[], width: number): string[] {
