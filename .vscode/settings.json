@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "src/content/philes/**/*.txt": "markdown"
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  }
+}

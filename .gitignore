@@ -33,7 +33,9 @@ yarn-error.log*
 !.env.test
 
 # editor / local agent state
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
 .idea/
 .codex/
 .agents/

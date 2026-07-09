@@ -49,4 +49,4 @@ Write the article here.
 )
 
 Write-Host "Created: $postPath"
-& micro $postPath
+& code --reuse-window $postPath
