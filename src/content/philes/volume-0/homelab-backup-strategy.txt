@@ -14,8 +14,8 @@ STACK //
   Restic
   Backrest
   Backblaze B2
-  Encrypted USB
-  Syncthing
+  Encrypted off-site USB
+  Syncthing (sync only)
 
 LAST UPDATED //
 

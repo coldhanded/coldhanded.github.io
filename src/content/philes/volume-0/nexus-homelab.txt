@@ -44,13 +44,14 @@ SERVICES //
   Backrest            Restic backup management
   Beszel              Lightweight system monitoring
   Diun                Container image update notifications
+  Docsify             Browsable Markdown documentation
   Homepage            Local service dashboard
   Jellyfin            Movies, television, and anime
   Navidrome           Music streaming
   ntfy                Private notifications
   Scrutiny            Drive-health monitoring
   Speedtest Tracker   Connection history
-  Syncthing            File and note synchronization
+  Syncthing           File and note synchronization
   Uptime Kuma         Service availability monitoring
 
 ACCESS MODEL //

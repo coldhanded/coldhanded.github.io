@@ -19,6 +19,19 @@ single command now checks the repository state, verifies that the remote
 branch is not ahead, runs a production build, asks for a commit message,
 and then pushes the finished change.
 
+WHAT IT RUNS //
+
+The script starts by showing me exactly what changed. It then runs the
+same checks I would normally run by hand:
+
+  astro check
+  biome check .
+  astro build
+
+If any check fails, publishing stops before a commit is made. If they
+all pass, the script then asks for a commit message, commits the
+changes, and pushes them to the main branch.
+
 The goal here was not complete automation. It was a controlled, minimal
 workflow with sensible failure points: stop when shit is wrong, stop
 when the remote has newer work, stop when the build fails, and never

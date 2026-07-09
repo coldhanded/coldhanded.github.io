@@ -81,9 +81,11 @@ LAST UPDATED //
 Write the project overview here.
 "@
 
+$post = ($post -replace "`r`n?", "`n").TrimEnd([char[]]"`r`n") + "`n"
+
 [System.IO.File]::WriteAllText(
   $postPath,
-  $post + [Environment]::NewLine,
+  $post,
   [System.Text.UTF8Encoding]::new($false)
 )
 

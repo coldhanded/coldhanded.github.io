@@ -38,8 +38,8 @@ BROWSING //
 
 Vanadium is my primary browser.
 
-Brave is mostly kept for synchronized Nexus and administrative bookmarks,
-and as a fallback when Vanadium is acting up.
+Brave is mostly kept for synchronized Nexus and administrative
+bookmarks, and as a fallback when Vanadium is acting up.
 
 APPLICATION APPROACH //
 

@@ -23,7 +23,7 @@ LAST UPDATED //
   July 2026
 
 I wanted my notes available across my phone, desktop, and server without
-locking them inside another proprietary notes or sync platform.
+locking them inside another proprietary notes app or sync platform.
 
 The solution ended up being super simple: plain Markdown files, Markor
 for writing on mobile, and Syncthing keeping everything in sync through
@@ -58,8 +58,8 @@ just as fast as a useful change. That is the one major weakness of the
 system.
 
 For that reason, the notes are also included in my encrypted backup
-routine, with both cloud and off-site copies. That gives me a way back
-when something inevitably fucks up.
+routine, with automated cloud and manual off-site copies. That gives me
+a way back when something inevitably fucks up.
 
 This keeps the entire setup portable, readable, and under my control
 without handing it over to another big-tech account.

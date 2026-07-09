@@ -39,7 +39,7 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
         direction: "asc"
       },
       entryPrefix: "P",
-      postscript: ["  --[ END PROJECT ]--------------------------------------------------//---"]
+      postscript: ["  --[ END PROJECTS ]-------------------------------------------------//---"]
     }
   ],
   [
@@ -54,7 +54,7 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
         direction: "desc"
       },
       entryPrefix: "N",
-      postscript: ["  --[ END NOTE ]-----------------------------------------------------//---"]
+      postscript: ["  --[ END NOTES ]----------------------------------------------------//---"]
     }
   ]
 ]);
