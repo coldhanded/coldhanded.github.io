@@ -1,3 +1,4 @@
+import { volumeHref } from "../../config/volumes";
 import type { Phile } from "../philes/model";
 import { getAllPhiles, getPhilesByVolume } from "../philes/repository";
 import type { Volume } from "./model";
@@ -20,7 +21,7 @@ export async function getAllVolumes(philes?: Phile[]): Promise<Volume[]> {
     .sort(([left], [right]) => compareVolumes(left, right))
     .map(([number, volumePhiles]) => ({
       number,
-      href: `/volume/${number}/`,
+      href: volumeHref(number),
       philes: volumePhiles
     }));
 }
@@ -38,7 +39,7 @@ export async function getVolume(number: number): Promise<Volume | undefined> {
 
   return {
     number,
-    href: `/volume/${number}/`,
+    href: volumeHref(number),
     philes
   };
 }

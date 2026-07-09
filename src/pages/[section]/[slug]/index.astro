@@ -1,0 +1,52 @@
+---
+import PhileShell from "../../../components/phile/PhileShell.astro";
+import { volumePath } from "../../../config/volumes";
+import TextmodeLayout from "../../../layouts/textmode/TextmodeLayout.astro";
+import {
+  getAllPhiles,
+  getPhileByRoute
+} from "../../../modules/philes/repository";
+import { phileExcerpt } from "../../../modules/seo/xml";
+
+type Props = {
+  volumeNumber: number;
+};
+
+export async function getStaticPaths() {
+  const philes = await getAllPhiles();
+
+  return philes.map((phile) => ({
+    params: {
+      section: volumePath(phile.route.volume),
+      slug: phile.route.slug
+    },
+    props: {
+      volumeNumber: phile.route.volume
+    }
+  }));
+}
+
+const { volumeNumber } = Astro.props;
+const phile = await getPhileByRoute(
+  volumeNumber,
+  Astro.params.slug ?? ""
+);
+
+if (!phile) {
+  return Astro.redirect("/");
+}
+
+const hasCjk =
+  phile.data.lang === "zh" ||
+  /[\p{Script=Han}]/u.test(`${phile.data.title}\n${phile.body}`);
+---
+
+<TextmodeLayout
+  title={phile.data.title}
+  description={phileExcerpt(phile)}
+  preloadCjk={hasCjk}
+  pageType="article"
+  publishedTime={phile.data.date}
+>
+  <PhileShell phile={phile} />
+</TextmodeLayout>

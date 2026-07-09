@@ -1,26 +1,37 @@
 ---
-import TextmodeLayout from "../../../layouts/textmode/TextmodeLayout.astro";
-import VolumeScreen from "../../../components/volume/VolumeScreen.astro";
-import { getAllVolumes, getVolume } from "../../../modules/volumes/repository";
-import { volumeListLabel, volumeTitle } from "../../../modules/volumes/labels";
+import { getAllVolumes } from "../../../modules/volumes/repository";
+
+type Props = {
+  destination: string;
+};
 
 export async function getStaticPaths() {
   const volumes = await getAllVolumes();
+
   return volumes.map((volume) => ({
-    params: { volume: String(volume.number) }
+    params: {
+      volume: String(volume.number)
+    },
+    props: {
+      destination: volume.href
+    }
   }));
 }
 
-const volumeNumber = Number(Astro.params.volume);
-const volume = await getVolume(volumeNumber);
-
-if (!volume) {
-  return Astro.redirect("/");
-}
-
-const hasCjk = volume.philes.some((phile) => phile.data.lang === "zh" || /[\p{Script=Han}]/u.test(phile.data.title));
+const { destination } = Astro.props;
+const canonicalUrl = new URL(destination, Astro.site).toString();
 ---
 
-<TextmodeLayout title={volumeTitle(volume)} description={volumeListLabel(volume)} preloadCjk={hasCjk}>
-  <VolumeScreen volume={volume} />
-</TextmodeLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={destination}>{destination}</a></p>
+  </body>
+</html>

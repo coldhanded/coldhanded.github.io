@@ -7,6 +7,7 @@ export type VolumeConfig = {
   title: string;
   subtitle?: string;
   listLabel: string;
+  path: string;
   postscript?: string[];
   entryPrefix?: string;
   entryLabel?: "index" | "year";
@@ -17,6 +18,7 @@ export type VolumeConfig = {
 export const defaultVolumeConfig = (number: number): VolumeConfig => ({
   title: `Coldhands Volume ${number}`,
   listLabel: `Volume ${number}`,
+  path: `volume/${number}`,
   phileSort: {
     by: "date",
     direction: "desc"
@@ -31,6 +33,7 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
       title: "Projects",
       subtitle: "Builds, configurations, and experiments.",
       listLabel: "Projects",
+      path: "projects",
       phileSort: {
         by: "order",
         direction: "asc"
@@ -45,6 +48,7 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
       title: "Notes",
       subtitle: "Ideas, guides, and observations.",
       listLabel: "Notes",
+      path: "notes",
       phileSort: {
         by: "date",
         direction: "desc"
@@ -57,4 +61,12 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
 
 export function volumeConfig(number: number): VolumeConfig {
   return volumeConfigs.get(number) ?? defaultVolumeConfig(number);
+}
+
+export function volumePath(number: number): string {
+  return volumeConfig(number).path;
+}
+
+export function volumeHref(number: number): string {
+  return `/${volumePath(number)}/`;
 }

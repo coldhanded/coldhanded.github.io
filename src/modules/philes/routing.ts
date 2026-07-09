@@ -1,3 +1,4 @@
+import { volumeHref } from "../../config/volumes";
 import type { PhileEntry, PhileRoute } from "./model";
 
 const volumePathPattern = /^volume-(\d+)\/(.+?)(?:\.txt)?$/;
@@ -18,11 +19,13 @@ export function routeForPhile(entry: PhileEntry): PhileRoute {
     throw new Error(`Unable to derive slug for "${entry.id}".`);
   }
 
+  const parentHref = volumeHref(volume);
+
   return {
     volume,
     slug,
-    href: `/volume/${volume}/${slug}/`,
-    volumeHref: `/volume/${volume}/`,
+    href: `${parentHref}${slug}/`,
+    volumeHref: parentHref,
     sourcePath: entry.id
   };
 }

@@ -41,7 +41,10 @@ function comparePhiles(left: Phile, right: Phile): number {
   }
 
   const config = volumeConfig(left.route.volume);
-  const sort = config.phileSort ?? { by: "date", direction: "desc" };
+  const sort = config.phileSort ?? {
+    by: "date",
+    direction: "desc"
+  };
   const sorted = compareByVolumeSort(left, right, sort);
 
   if (sorted !== 0) {

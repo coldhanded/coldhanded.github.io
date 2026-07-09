@@ -65,7 +65,7 @@ export const siteConfig: SiteConfig = {
       }
     },
     {
-      title: "Projects",
+      title: "PROJECTS",
       philes: {
         volume: 0,
         showEmpty: false

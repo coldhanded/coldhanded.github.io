@@ -1,35 +1,38 @@
 ---
-import TextmodeLayout from "../../../../layouts/textmode/TextmodeLayout.astro";
-import PhileShell from "../../../../components/phile/PhileShell.astro";
-import { getAllPhiles, getPhileByRoute } from "../../../../modules/philes/repository";
-import { phileExcerpt } from "../../../../modules/seo/xml";
+import { getAllPhiles } from "../../../../modules/philes/repository";
+
+type Props = {
+  destination: string;
+};
 
 export async function getStaticPaths() {
   const philes = await getAllPhiles();
+
   return philes.map((phile) => ({
     params: {
       volume: String(phile.route.volume),
       slug: phile.route.slug
+    },
+    props: {
+      destination: phile.route.href
     }
   }));
 }
 
-const volumeNumber = Number(Astro.params.volume);
-const phile = await getPhileByRoute(volumeNumber, Astro.params.slug ?? "");
-
-if (!phile) {
-  return Astro.redirect("/");
-}
-
-const hasCjk = phile.data.lang === "zh" || /[\p{Script=Han}]/u.test(`${phile.data.title}\n${phile.body}`);
+const { destination } = Astro.props;
+const canonicalUrl = new URL(destination, Astro.site).toString();
 ---
 
-<TextmodeLayout
-  title={phile.data.title}
-  description={phileExcerpt(phile)}
-  preloadCjk={hasCjk}
-  pageType="article"
-  publishedTime={phile.data.date}
->
-  <PhileShell phile={phile} />
-</TextmodeLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={destination}>{destination}</a></p>
+  </body>
+</html>

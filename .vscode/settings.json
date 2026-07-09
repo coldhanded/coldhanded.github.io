@@ -2,11 +2,26 @@
   "files.associations": {
     "src/content/philes/**/*.txt": "markdown"
   },
+  "files.exclude": {
+    "**/.astro": true,
+    "**/dist": true,
+    "**/node_modules": true
+  },
   "files.insertFinalNewline": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "new-note.cmd": "new-note.ps1",
+    "new-project.cmd": "new-project.ps1",
+    "publish.cmd": "publish.ps1",
+    "package.json": "pnpm-lock.yaml,pnpm-workspace.yaml,.npmrc"
+  },
   "rewrap.wrappingColumn": 72,
   "[markdown]": {
     "editor.wordWrap": "off",
-    "editor.rulers": [72],
+    "editor.rulers": [
+      72
+    ],
     "rewrap.autoWrap.enabled": true
   }
 }
