@@ -2,7 +2,10 @@
   "files.associations": {
     "src/content/philes/**/*.txt": "markdown"
   },
+  "rewrap.wrappingColumn": 72,
   "[markdown]": {
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "off",
+    "editor.rulers": [72],
+    "rewrap.autoWrap.enabled": true
   }
 }

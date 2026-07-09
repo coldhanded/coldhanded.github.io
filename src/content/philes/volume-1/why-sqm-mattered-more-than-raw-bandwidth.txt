@@ -6,36 +6,51 @@ author: "cold"
 
 THE PROBLEM //
 
-Download speed was never the issue. The problem was what happened when the connection was busy.
+Download speed was never the issue. The problem was what happened when
+the connection was busy.
 
-Large downloads or uploads could make ordinary browsing, streaming, and anything else on the network feel laggy. A conventional speed test still showed the expected speeds, but it said nothing about latency while the connection was under load.
+Large downloads or uploads could make ordinary browsing, streaming, and
+anything else on the network feel laggy. A conventional speed test still
+showed the expected speeds, but it said nothing about latency while the
+connection was under load.
 
 THE CHANGE //
 
-The ISP gateway remained upstream because Bell forces me to keep their garbage hardware in the chain, but routing and wireless duties were moved to a TP-Link Archer AX23 running OpenWrt.
+The ISP gateway remained upstream because Bell forces me to keep their
+garbage hardware in the chain, but routing and wireless duties were
+moved to a TP-Link Archer AX23 running OpenWrt.
 
-SQM was enabled on the WAN using CAKE. I set the limits slightly below my actual line speed so the AX23 could control the queue before it built up somewhere else in the path.
+SQM was enabled on the WAN using CAKE. I set the limits slightly below
+my actual line speed so the AX23 could control the queue before it built
+up somewhere else in the path.
 
 WHY IT HELPED //
 
-Without smart queue management, one large transfer can fill the available buffer and leave smaller packets waiting behind it.
+Without smart queue management, one large transfer can fill the
+available buffer and leave smaller packets waiting behind it.
 
-SQM deliberately controls that queue, allowing interactive traffic to remain responsive even while the connection is under heavy load.
+SQM deliberately controls that queue, allowing interactive traffic to
+remain responsive even while the connection is under heavy load.
 
 THE TRADE-OFF //
 
-SQM can slightly reduce the highest number shown by a bandwidth benchmark because the router keeps traffic beneath the configured limits.
+SQM can slightly reduce the highest number shown by a bandwidth
+benchmark because the router keeps traffic beneath the configured
+limits.
 
-That trade was worth it. Maximum throughput mattered less than keeping the connection responsive during normal mixed use.
+That trade was worth it. Maximum throughput mattered less than keeping
+the connection responsive during normal mixed use.
 
 RESULT //
 
 The difference was obvious immediately.
 
-Downloads could continue without making the rest of the network feel congested, and latency under load became much more consistent.
+Downloads could continue without making the rest of the network feel
+congested, and latency under load became much more consistent.
 
 LESSON //
 
 Connection quality is not defined by raw bandwidth alone.
 
-For this network, managing the queue produced a much larger improvement than chasing the highest possible speed-test number.
+For this network, managing the queue produced a much larger improvement
+than chasing the highest possible speed-test number.
