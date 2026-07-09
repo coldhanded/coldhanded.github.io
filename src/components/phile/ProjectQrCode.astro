@@ -1,0 +1,115 @@
+---
+import { create } from "qrcode";
+
+type Props = {
+  value: string;
+};
+
+const { value } = Astro.props;
+const displayValue = value.replace(/^https?:\/\//, "");
+
+const qrCode = create(value, {
+  errorCorrectionLevel: "M"
+});
+
+const quietZone = 4;
+const moduleCount = qrCode.modules.size;
+const svgSize = moduleCount + quietZone * 2;
+const pixelSize = svgSize * 3;
+const pathCommands: string[] = [];
+
+for (let row = 0; row < moduleCount; row += 1) {
+  let runStart = -1;
+
+  for (let column = 0; column <= moduleCount; column += 1) {
+    const isDark =
+      column < moduleCount && qrCode.modules.get(row, column) === 1;
+
+    if (isDark && runStart === -1) {
+      runStart = column;
+    }
+
+    if (!isDark && runStart !== -1) {
+      const x = runStart + quietZone;
+      const y = row + quietZone;
+      const width = column - runStart;
+
+      pathCommands.push(`M${x} ${y}h${width}v1H${x}z`);
+      runStart = -1;
+    }
+  }
+}
+
+const pathData = pathCommands.join("");
+---
+
+<div class="project-qr">
+  <a
+    class="project-qr-link"
+    href={value}
+    aria-label={`Open ${displayValue}`}
+  >
+    <svg
+      class="project-qr-image"
+      width={pixelSize}
+      height={pixelSize}
+      viewBox={`0 0 ${svgSize} ${svgSize}`}
+      role="img"
+      aria-labelledby="project-qr-title"
+      shape-rendering="crispEdges"
+      style={`width: ${pixelSize}px; height: ${pixelSize}px;`}
+    >
+      <title id="project-qr-title">
+        QR code for {displayValue}
+      </title>
+
+      <rect
+        class="project-qr-background"
+        width={svgSize}
+        height={svgSize}
+      />
+
+      <path
+        class="project-qr-modules"
+        d={pathData}
+      />
+    </svg>
+  </a>
+</div>
+
+<style>
+  .project-qr {
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    width: calc(var(--text-cell) * 85);
+    margin: calc(var(--text-size) * 3) auto calc(var(--text-size) * 4);
+  }
+
+  .project-qr-link {
+    display: block;
+    flex: 0 0 auto;
+    line-height: 0;
+  }
+
+  .project-qr-image {
+    display: block;
+    max-width: none;
+  }
+
+  .project-qr-background {
+    fill: var(--bg);
+  }
+
+  .project-qr-modules {
+    fill: var(--fg);
+  }
+
+  @media (max-width: 760px) {
+    .project-qr {
+      display: none;
+    }
+  }
+</style>

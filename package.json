@@ -25,6 +25,7 @@
     "@astrojs/check": "^0.9.9",
     "@chenglou/pretext": "^0.0.7",
     "astro": "^7.0.0",
+    "qrcode": "^1.5.4",
     "typescript": "^5.8.3",
     "yaml": "^2.9.0"
   },
@@ -32,6 +33,7 @@
     "@biomejs/biome": "^2.4.15",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.9.1",
+    "@types/qrcode": "^1.5.6",
     "playwright": "^1.60.0",
     "tailwindcss": "^4.3.0"
   }

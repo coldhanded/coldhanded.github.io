@@ -1,5 +1,6 @@
 ---
 import PhileShell from "../../../components/phile/PhileShell.astro";
+import ProjectQrCode from "../../../components/phile/ProjectQrCode.astro";
 import { volumePath } from "../../../config/volumes";
 import TextmodeLayout from "../../../layouts/textmode/TextmodeLayout.astro";
 import {
@@ -39,6 +40,11 @@ if (!phile) {
 const hasCjk =
   phile.data.lang === "zh" ||
   /[\p{Script=Han}]/u.test(`${phile.data.title}\n${phile.body}`);
+
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? Astro.url.origin
+).href;
 ---
 
 <TextmodeLayout
@@ -49,4 +55,5 @@ const hasCjk =
   publishedTime={phile.data.date}
 >
   <PhileShell phile={phile} />
+  {volumeNumber === 0 && <ProjectQrCode value={canonicalUrl} />}
 </TextmodeLayout>
