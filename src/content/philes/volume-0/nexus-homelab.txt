@@ -13,6 +13,7 @@ STACK //
 
   Debian 13
   Docker
+  Portainer
   Caddy
   Tailscale
   Syncthing
@@ -21,12 +22,12 @@ LAST UPDATED //
 
   July 2026
 
+Nexus is my private homelab server, built from old desktop hardware
+that would otherwise be sitting unused.
 
-A private home server built from repurposed desktop hardware.
-
-The goal is not to host as many services as possible. Nexus is designed
-around a smaller set of useful services that are understandable,
-maintainable, recoverable, and private by default.
+The goal is not to host as many services as possible. I would rather
+keep a smaller set of useful services that I understand, can maintain,
+and know how to recover when something inevitably fucks up.
 
 HARDWARE //
 
@@ -36,15 +37,6 @@ HARDWARE //
   Intel 660p 1 TB NVMe system drive
   Seagate 3 TB media drive
   Lian Li Lancool PC-K62
-
-PLATFORM //
-
-  Debian GNU/Linux 13
-  Docker
-  Portainer
-  Caddy
-  Tailscale
-  Syncthing
 
 SERVICES //
 
@@ -66,14 +58,14 @@ ACCESS MODEL //
 Most web interfaces listen only on localhost and are reached through
 Caddy using private home.arpa service names.
 
-Remote access is provided through Tailscale and split DNS. The same
-private service names work locally and remotely without exposing Nexus
-directly to the public Internet.
+Tailscale and split DNS provide remote access. The same private service
+names work locally and remotely without exposing Nexus directly to the
+public internet.
 
-No public port forwards target Nexus.
+No public port forwards point at Nexus.
 
 DOCUMENTATION //
 
-The operational source of truth is a synchronized Markdown runbook.
-A separate sanitized GitHub repository stores reference documentation,
+The source of truth is a synced Markdown runbook, aka "The Bible." A
+separate sanitized GitHub repository stores reference documentation,
 examples, and templates without secrets or raw configuration backups.

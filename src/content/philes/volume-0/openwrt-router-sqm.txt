@@ -20,12 +20,11 @@ LAST UPDATED //
 
   July 2026
 
-
-Firelink is the routing and wireless layer for the home network.
+Firelink handles routing and wireless for my home network.
 
 A TP-Link Archer AX23 v1 running OpenWrt replaced the ISP gateway as
-the primary router while the Bell gateway remains upstream for service
-compatibility.
+the primary router. Bell's gateway still sits upstream because their
+setup still requires it in the chain.
 
 ROLES //
 
@@ -55,17 +54,17 @@ SQM //
 
 Smart Queue Management uses CAKE on the WAN connection.
 
-This was added to reduce latency under load rather than to maximize the
-largest possible benchmark number. The practical result is a noticeably
-more responsive connection during simultaneous downloads and uploads.
+I added it to reduce latency under load, not to chase the largest
+possible benchmark numbers. The result is a noticeably more responsive
+connection during simultaneous downloads and uploads.
 
 DNS //
 
 Firelink advertises Nexus and AdGuard Home as the normal DNS resolver
-for network clients.
+for all devices on the network.
 
 Local home.arpa names provide clean access to private services without
-publishing internal services or relying on public DNS.
+publishing them or relying on public DNS.
 
 SECURITY //
 
@@ -75,5 +74,5 @@ SECURITY //
   Nexus has no public port forwards.
   Configuration backups are created after durable network changes.
 
-The design keeps the ISP gateway isolated from normal client traffic
-while retaining compatibility with the existing connection.
+The setup keeps routing, wireless, DNS, and firewall control on Firelink
+while retaining compatibility with Bell's proprietary hardware.

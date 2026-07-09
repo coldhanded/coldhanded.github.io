@@ -19,12 +19,11 @@ LAST UPDATED //
 
   July 2026
 
+Bonfire is my Pixel 10a running GrapheneOS.
 
-Bonfire is a Pixel 10a running GrapheneOS.
-
-The project replaced an older LineageOS and microG phone with a cleaner
-setup based on GrapheneOS security defaults and applications that do not
-require Google Play services.
+It replaced an older LineageOS and microG phone with a cleaner setup
+built around GrapheneOS defaults and applications that do not depend on
+Google Play services.
 
 BASELINE //
 
@@ -37,17 +36,17 @@ BASELINE //
 
 BROWSING //
 
-Vanadium is the primary browser.
+Vanadium is my primary browser.
 
-Brave is kept separately for synchronized administrative and Nexus
-bookmarks rather than being used as the general browser.
+Brave is mostly kept for synchronized Nexus and administrative bookmarks,
+and as a fallback when Vanadium is acting up.
 
 APPLICATION APPROACH //
 
-Preference is given to maintained applications that work without Google
-Play services.
+I prefer maintained, privacy-respecting applications that work without
+Google Play services or mandatory accounts.
 
-Current examples include:
+The current setup includes:
 
   Capy Reader
   HeliBoard
@@ -58,19 +57,19 @@ Current examples include:
 
 NOTES AND FILES //
 
-Markor stores ordinary Markdown notes.
+Markor handles ordinary Markdown notes.
 
-Syncthing connects Bonfire with the existing Nexus Sync folder so notes
-remain available on the phone, Windows computer, and Nexus without
-depending on a proprietary note service.
+Syncthing connects Bonfire to my existing Nexus Sync folder, keeping
+notes available on the phone, Windows, and Nexus without depending on a
+proprietary notes platform.
 
 NETWORKING //
 
-Tailscale is available when private remote access is needed, but it is
-not configured as an always-on VPN.
+Tailscale is available when I need private remote access, but it is not
+configured as an always-on VPN.
 
-Android Private DNS remains Off or Automatic because local DNS and
-home.arpa service resolution are handled by Firelink and Nexus.
+Android Private DNS remains on Automatic because local DNS and home.arpa
+resolution are already handled by Firelink and Nexus.
 
-The final setup aims to remain minimal rather than replacing Google
-services with another large collection of background services.
+The goal is to keep the phone minimal while maintaining usability,
+without adding a bunch of telemetry or background services.
