@@ -13,7 +13,10 @@
   }
 
   .screen:has(.home-shell) {
-    min-height: calc(100vh - 16px);
+    box-sizing: border-box;
+    min-height: calc(100svh - 16px);
+    padding-top: clamp(48px, 10svh, 96px);
+    align-items: flex-start;
     text-align: center;
   }
 
@@ -24,7 +27,7 @@
   }
 
   .home-shell {
-    transform: translateY(-6vh);
+    transform: none;
     zoom: min(var(--mobile-scale), var(--fit-scale));
   }
 
