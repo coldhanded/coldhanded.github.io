@@ -16,6 +16,20 @@
       }
     },
     {
+      "label": "Coldhands: New project",
+      "type": "shell",
+      "command": ".\\new-project.cmd",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
       "label": "Coldhands: Preview",
       "type": "shell",
       "command": "corepack pnpm dev",
