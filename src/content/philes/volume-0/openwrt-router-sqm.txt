@@ -1,0 +1,79 @@
+---
+title: "OpenWrt Router & SQM"
+date: 2026-06-26
+author: "cold"
+order: 1
+---
+
+STATUS //
+
+  Active
+
+PLATFORM //
+
+  TP-Link Archer AX23 v1
+  OpenWrt
+  LuCI
+  CAKE SQM
+
+LAST UPDATED //
+
+  July 2026
+
+
+Firelink is the routing and wireless layer for the home network.
+
+A TP-Link Archer AX23 v1 running OpenWrt replaced the ISP gateway as
+the primary router while the Bell gateway remains upstream for service
+compatibility.
+
+ROLES //
+
+  Main router
+  Main wireless access point
+  DHCP server
+  Local DNS integration
+  Static device reservations
+  Firewall
+  Traffic shaping
+
+NETWORK DESIGN //
+
+  Bell gateway
+       |
+       v
+  Firelink / OpenWrt
+       |
+       +-- wired devices
+       +-- wireless devices
+       +-- Nexus homelab
+
+The Bell gateway's wireless network is disabled. Firelink provides a
+single unified wireless network across the 2.4 GHz and 5 GHz radios.
+
+SQM //
+
+Smart Queue Management uses CAKE on the WAN connection.
+
+This was added to reduce latency under load rather than to maximize the
+largest possible benchmark number. The practical result is a noticeably
+more responsive connection during simultaneous downloads and uploads.
+
+DNS //
+
+Firelink advertises Nexus and AdGuard Home as the normal DNS resolver
+for network clients.
+
+Local home.arpa names provide clean access to private services without
+publishing internal services or relying on public DNS.
+
+SECURITY //
+
+  Administrative access is restricted to the LAN.
+  WAN input and forwarding remain rejected by default.
+  Router services do not listen on the upstream WAN interface.
+  Nexus has no public port forwards.
+  Configuration backups are created after durable network changes.
+
+The design keeps the ISP gateway isolated from normal client traffic
+while retaining compatibility with the existing connection.

@@ -1,0 +1,76 @@
+---
+title: "De-Googled Pixel"
+date: 2026-07-04
+author: "cold"
+order: 2
+---
+
+STATUS //
+
+  Active
+
+PLATFORM //
+
+  Pixel 10a
+  GrapheneOS
+  No sandboxed Google Play
+
+LAST UPDATED //
+
+  July 2026
+
+
+Bonfire is a Pixel 10a running GrapheneOS.
+
+The project replaced an older LineageOS and microG phone with a cleaner
+setup based on GrapheneOS security defaults and applications that do not
+require Google Play services.
+
+BASELINE //
+
+  Pixel 10a
+  GrapheneOS
+  Bootloader relocked
+  OEM unlocking disabled
+  No sandboxed Google Play installation
+  GrapheneOS defaults retained unless there is a clear reason to change
+
+BROWSING //
+
+Vanadium is the primary browser.
+
+Brave is kept separately for synchronized administrative and Nexus
+bookmarks rather than being used as the general browser.
+
+APPLICATION APPROACH //
+
+Preference is given to maintained applications that work without Google
+Play services.
+
+Current examples include:
+
+  Breezy Weather
+  HeliBoard
+  Markor
+  Syncthing
+  Ultrasonic
+  Vanadium
+
+NOTES AND FILES //
+
+Markor stores ordinary Markdown notes.
+
+Syncthing connects Bonfire with the existing Nexus Sync folder so notes
+remain available on the phone, Windows computer, and Nexus without
+depending on a proprietary note service.
+
+NETWORKING //
+
+Tailscale is available when private remote access is needed, but it is
+not configured as an always-on VPN.
+
+Android Private DNS remains Off or Automatic because local DNS and
+home.arpa service resolution are handled by Firelink and Nexus.
+
+The final setup aims to remain minimal rather than replacing Google
+services with another large collection of background services.

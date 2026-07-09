@@ -1,0 +1,79 @@
+---
+title: "Nexus Homelab"
+date: 2026-07-04
+author: "cold"
+order: 0
+---
+
+STATUS //
+
+  Active
+
+STACK //
+
+  Debian 13
+  Docker
+  Caddy
+  Tailscale
+  Syncthing
+
+LAST UPDATED //
+
+  July 2026
+
+
+A private home server built from repurposed desktop hardware.
+
+The goal is not to host as many services as possible. Nexus is designed
+around a smaller set of useful services that are understandable,
+maintainable, recoverable, and private by default.
+
+HARDWARE //
+
+  Intel Core i5-4670
+  Gigabyte GA-Z97X-GAMING 5
+  Approximately 16 GB RAM
+  Intel 660p 1 TB NVMe system drive
+  Seagate 3 TB media drive
+  Lian Li Lancool PC-K62
+
+PLATFORM //
+
+  Debian GNU/Linux 13
+  Docker
+  Portainer
+  Caddy
+  Tailscale
+  Syncthing
+
+SERVICES //
+
+  AdGuard Home        Network-wide DNS filtering
+  Backrest            Restic backup management
+  Beszel              Lightweight system monitoring
+  Diun                Container image update notifications
+  Homepage            Local service dashboard
+  Jellyfin            Movies, television, and anime
+  Navidrome           Music streaming
+  ntfy                Private notifications
+  Scrutiny            Drive-health monitoring
+  Speedtest Tracker   Connection history
+  Syncthing            File and note synchronization
+  Uptime Kuma         Service availability monitoring
+
+ACCESS MODEL //
+
+Most web interfaces listen only on localhost and are reached through
+Caddy using private home.arpa service names.
+
+Remote access is provided through Tailscale and split DNS. The same
+private service names work locally and remotely without exposing Nexus
+directly to the public Internet.
+
+No public port forwards target Nexus.
+
+DOCUMENTATION //
+
+The operational source of truth is a synchronized Markdown runbook.
+A separate sanitized GitHub repository stores reference documentation,
+examples, and templates without secrets or raw configuration backups.
