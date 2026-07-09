@@ -1,0 +1,87 @@
+---
+title: "Homelab Backup Strategy"
+date: 2026-07-09
+author: "cold"
+order: 4
+---
+
+STATUS //
+
+  Active
+
+STACK //
+
+  Restic
+  Backrest
+  Backblaze B2
+  Encrypted USB
+  Syncthing
+
+LAST UPDATED //
+
+  July 2026
+
+Nexus eventually became important enough that "I'll just rebuild it"
+stopped being the backup plan. After so many hours of tinkering and
+configuring, it only made sense to put a proper backup plan in place.
+
+The goal is not to back up every single replaceable media file. It is to
+protect the configuration, service data, and notes that would be a pain
+to reconstruct after a drive failure, bad update, or one of my own
+mistakes.
+
+The result is a layered setup, like a backup burger: Restic snapshots
+managed through Backrest, encrypted cloud copies in Backblaze B2, and a
+manual USB backup stored off-site.
+
+BACKUP PHILOSOPHY //
+
+A backup is only useful if I know what it contains, where it is stored,
+and how to restore it.
+
+I would much rather protect a smaller set of important data properly and
+efficiently than blindly copy everything without a clear recovery plan.
+
+BACKUP LAYERS //
+
+The first layer is an automated cloud backup. Backrest manages encrypted
+Restic snapshots and sends the important configuration and service data
+to Backblaze B2 on a set schedule.
+
+The second layer is a manual encrypted USB backup. It covers the same
+kind of critical data, but the drive is stored off-site when it is not
+being updated.
+
+Syncthing helps move notes and other important files between devices,
+but it is not treated as a backup. A deletion can sync just as easily as
+a useful change, so those files still need to exist inside the actual
+backup layers.
+
+WHAT IS NOT BACKED UP //
+
+Movies, TV shows, and other replaceable media are intentionally left out
+of the backup plan. Rebuilding those libraries would be annoying, but
+not nearly as annoying as losing weeks of configuration, notes, or
+service data.
+
+Backing up everything would increase storage use, transfer time, and
+cost without improving recovery where it matters most. I do not need 15
+copies of Akira stored across several drives.
+
+I am also not the type of person to hoard a massive library of unwatched
+media just to fill hard drive space. I keep a relatively small backlog,
+keep tabs on it, and generally don't hang on to media after I've watched
+it.
+
+RESTORE TESTING //
+
+A backup is only useful if I can actually get the data back. I
+occasionally roleplay a disaster by restoring a small file or folder
+into an isolated location, then verify the repository afterward.
+
+A little excessive? Possibly, but it gives me peace of mind instead of
+assuming a successful backup job means recovery will always work.
+
+The goal is not to torture myself by rehearsing a full disaster every
+week. It is to know the backups are readable and that I understand the
+restore process before I actually need it.

@@ -31,8 +31,11 @@ my server.
 
 WHY PLAIN TEXT //
 
-Why use anything more complicated? Markdown is supported almost
-everywhere, and the files remain readable without any special software.
+Why use anything more complicated? This post itself was written as a
+plain-text file.
+
+Markdown is supported almost everywhere, and the files remain readable
+without any special software.
 
 With Docsify running on my homelab, I can also turn a plain Markdown
 file into a browsable website in seconds without a build process. That
