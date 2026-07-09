@@ -1,0 +1,15 @@
+---
+title: "Building a One-Command Astro Publishing Workflow"
+date: 2026-07-09
+author: "cold"
+---
+
+INTRODUCTION //
+
+Publishing a small personal site should not require memorizing a sequence of commands every time you want to share a thought.
+
+My site is built with Astro and deployed through GitHub Pages. The normal process was simple - build the site, review the changes, commit them, and push to the main branch. A simple process, sure, but why not make it simpler?
+
+I replaced that sequence with a small PowerShell publishing script. A single command now checks the repository state, verifies that the remote branch is not ahead, runs a production build, asks for a commit message, and then pushes the finished change.
+
+The goal here was not complete automation. It was a controlled, minimal workflow with sensible failure points: stop when shit is wrong, stop when the remote has newer work, stop when the build fails, and never force-push.
