@@ -2,6 +2,7 @@
   "files.associations": {
     "src/content/philes/**/*.txt": "markdown"
   },
+  "files.insertFinalNewline": true,
   "rewrap.wrappingColumn": 72,
   "[markdown]": {
     "editor.wordWrap": "off",
