@@ -20,8 +20,10 @@ const asciiAttr = escapeHtml(asciiText);
 
 function renderHomeSection(section: HomeSection, allVolumes: Volume[]): string[] {
   const items = renderHomeItems(section, allVolumes);
+  const hideWhenEmpty =
+    section.volumes?.showEmpty === false || section.philes?.showEmpty === false;
 
-  if (items.length === 0 && section.volumes?.showEmpty === false) {
+  if (items.length === 0 && hideWhenEmpty) {
     return [];
   }
 
@@ -31,6 +33,7 @@ function renderHomeSection(section: HomeSection, allVolumes: Volume[]): string[]
 function renderHomeItems(section: HomeSection, allVolumes: Volume[]): string[] {
   return [
     ...renderVolumeItems(section, allVolumes),
+    ...renderPhileItems(section, allVolumes),
     ...(section.items ?? []).flatMap(renderHomeItem)
   ];
 }
@@ -55,6 +58,27 @@ function renderVolumeItems(section: HomeSection, allVolumes: Volume[]): string[]
     renderHomeItem({
       label: volumeListLabel(volume),
       href: volume.href
+    })
+  );
+}
+
+function renderPhileItems(section: HomeSection, allVolumes: Volume[]): string[] {
+  if (!section.philes) {
+    return [];
+  }
+
+  const volume = allVolumes.find(
+    (candidate) => candidate.number === section.philes?.volume
+  );
+
+  if (!volume) {
+    return [];
+  }
+
+  return volume.philes.flatMap((phile) =>
+    renderHomeItem({
+      label: phile.data.title,
+      href: phile.route.href
     })
   );
 }

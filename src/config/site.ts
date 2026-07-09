@@ -15,6 +15,10 @@ export type HomeSection = {
     sort?: "asc" | "desc";
     showEmpty?: boolean;
   };
+  philes?: {
+    volume: number;
+    showEmpty?: boolean;
+  };
 };
 
 export type SiteConfig = {
@@ -62,28 +66,10 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "Projects",
-      items: [
-        {
-          label: "Nexus Homelab",
-          href: "/volume/0/nexus-homelab/"
-        },
-        {
-          label: "OpenWrt Router & SQM",
-          href: "/volume/0/openwrt-router-sqm/"
-        },
-        {
-          label: "De-Googled Pixel",
-          href: "/volume/0/de-googled-pixel/"
-        },
-        {
-          label: "Personal Knowledge Sync",
-          href: "/volume/0/personal-knowledge-sync/"
-        },
-        {
-          label: "Homelab Backup Strategy",
-          href: "/volume/0/homelab-backup-strategy/"
-        }
-      ]
+      philes: {
+        volume: 0,
+        showEmpty: false
+      }
     },
     {
       title: "COMMS",
