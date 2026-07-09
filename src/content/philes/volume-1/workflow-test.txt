@@ -1,0 +1,9 @@
+---
+title: "Workflow Test"
+date: 2026-07-08
+author: "cold"
+---
+
+INTRODUCTION //
+
+This is a workflow test.
