@@ -74,6 +74,30 @@ export const siteConfig: SiteConfig = {
         {
           label: "De-Googled Pixel",
           href: "/volume/0/de-googled-pixel/"
+        },
+        {
+          label: "Personal Knowledge Sync",
+          href: "/volume/0/personal-knowledge-sync/"
+        },
+        {
+          label: "Homelab Backup Strategy",
+          href: "/volume/0/homelab-backup-strategy/"
+        }
+      ]
+    },
+    {
+      title: "COMMS",
+      items: [
+        {
+          label: "Email: sysop@coldhands.net",
+          linkLabel: "sysop@coldhands.net",
+          href: "mailto:sysop@coldhands.net"
+        },
+        {
+          label: "Signal: message me",
+          linkLabel: "message me",
+          href: "https://signal.me/#eu/L5_uGA5ccCjNMzKJLvq9U9gULXRTojHS98lj-rMSG9CfsxoUERNJrpYOmgsFRaPe",
+          external: true
         }
       ]
     }
