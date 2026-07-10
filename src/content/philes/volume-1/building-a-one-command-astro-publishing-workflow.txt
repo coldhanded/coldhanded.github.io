@@ -10,14 +10,32 @@ Publishing a small personal site should not require memorizing a
 sequence of commands every time you want to share a thought.
 
 My site is built with Astro and deployed through GitHub Pages. The
-normal process was simple - build the site, review the changes, commit
+normal process was simple: build the site, review the changes, commit
 them, and push to the main branch. A simple process, sure, but why not
 make it simpler?
 
-I replaced that sequence with a small PowerShell publishing script. A
-single command now checks the repository state, verifies that the remote
-branch is not ahead, runs a production build, asks for a commit message,
-and then pushes the finished change.
+I replaced that sequence with a small PowerShell publishing script I
+call Roundtable. A single command now checks the repository state,
+verifies that the remote branch is not ahead, runs a production build,
+asks for a commit message, and then pushes the finished change.
+
+THE OLD ROUTINE //
+
+Before the Roundtable script, publishing was not difficult. It was just
+tedious and annoying.
+
+I had to check the repository, make sure I was on the correct branch,
+verify that the remote did not have newer work, run all of the checks,
+build the site, and push everything manually.
+
+None of those steps are complicated on their own. The problem is that
+there are too many. It is easy to run them in the wrong order, forget a
+step, or decide to skip a check because the change looks harmless and I
+am feeling lazy.
+
+A personal site doesn't need an elaborate deployment platform or a
+custom CMS. I just wanted a safeguard that would stop me from publishing
+a broken build or accidentally overwriting newer work.
 
 WHAT IT RUNS //
 
@@ -32,7 +50,43 @@ If any check fails, publishing stops before a commit is made. If they
 all pass, the script then asks for a commit message, commits the
 changes, and pushes them to the main branch.
 
-The goal here was not complete automation. It was a controlled, minimal
-workflow with sensible failure points: stop when shit is wrong, stop
-when the remote has newer work, stop when the build fails, and never
-force-push.
+THE SAFEGUARDS //
+
+The useful part is not just that the script saves me from typing a few
+commands. It's that it refuses to continue when something looks wrong.
+
+It checks that I am on the main branch, fetches the latest state from
+GitHub, and stops if the remote branch has newer commits. It also shows
+me every changed file and asks for confirmation before running the
+build.
+
+If Astro or Biome report a problem, nothing gets committed. If the
+commit message is empty, it stops there too. The script never
+force-pushes or automatically tries to merge newer remote changes.
+
+That makes the workflow minimal and predictable. Either everything
+passes and the site gets published, or it stops and tells me what I
+fucked up.
+
+USING ROUNDTABLE //
+
+The script is wired into a VS Code task called Roundtable: Publish.
+
+That means I don't even need to remember the PowerShell command or open
+a separate terminal. I run the task, review the changed files, and enter
+a commit message. Roundtable handles the rest.
+
+It's still transparent enough that I can see every important step, but
+simplified enough that posting no longer feels like a chore.
+
+THE RESULT //
+
+Roundtable did not make publishing to this site possible. It made
+publishing simple and consistent.
+
+I'll still review every change and decide what gets committed. The
+difference now is that I don't have to think about the repetitive steps
+or wonder if I forgot something important every time I post or make an
+edit.
+
+That is all the automation I need.

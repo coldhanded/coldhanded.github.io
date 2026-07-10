@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Coldhands: New note",
+      "label": "Roundtable: New note",
       "type": "shell",
       "command": ".\\new-note.cmd",
       "options": {
@@ -16,7 +16,7 @@
       }
     },
     {
-      "label": "Coldhands: New project",
+      "label": "Roundtable: New project",
       "type": "shell",
       "command": ".\\new-project.cmd",
       "options": {
@@ -30,7 +30,7 @@
       }
     },
     {
-      "label": "Coldhands: Preview",
+      "label": "Roundtable: Preview",
       "type": "shell",
       "command": "corepack pnpm dev",
       "options": {
@@ -44,7 +44,7 @@
       }
     },
     {
-      "label": "Coldhands: Publish",
+      "label": "Roundtable: Publish",
       "type": "shell",
       "command": ".\\publish.cmd",
       "options": {
