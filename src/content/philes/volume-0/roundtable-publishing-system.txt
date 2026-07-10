@@ -1,0 +1,118 @@
+---
+title: "Coldhands Publishing System"
+date: 2026-07-09
+author: "cold"
+order: 5
+---
+
+STATUS //
+
+  Active
+
+STACK //
+
+  Astro 7
+  TypeScript
+  Tailwind CSS
+  GitHub Pages
+  Cloudflare
+  PowerShell
+  Gohu bitmap font
+
+LAST UPDATED //
+
+  July 2026
+
+Roundtable is the small publishing system behind this site.
+
+It started as a simple customized Astro theme, then slowly turned into a
+robust setup for writing plain-text Projects and Notes, previewing them
+locally, and publishing everything with one command.
+
+The goal is not to build an entire CMS. It is to keep the site fast,
+readable, and easy to maintain. It should be simple enough that posting
+doesn't turn into a series of meticulous tasks, just a sensible
+workflow.
+
+HOW CONTENT WORKS //
+
+Projects and Notes are stored as plain-text files with a small block of
+frontmatter at the top.
+
+Projects live in volume-0 and use an order number to control how they
+appear across the site. Notes live in volume-1 and are sorted by date.
+
+The internal volume names are mostly just a leftover from the original
+theme. Publicly, everything uses normal routes like /projects/ and
+/notes/. I made sure the old volume URLs still redirect, so changing the
+structure didn't leave any dead links behind.
+
+I kept the content format intentionally minimal. There is no database,
+admin panel, or web editor. A post is just a text file that can be
+opened, searched, and backed up like anything else.
+
+WRITING A POST //
+
+I'm generally at my main Windows PC, so I do most of the writing
+directly in VS Code.
+
+Projects and Notes each have their own task for creating a new file. The
+task asks for a title, creates a slugged text file in the correct
+folder, adds the frontmatter, and opens it in the current VS Code
+window.
+
+Project order numbers are assigned automatically. That means I don't
+have to remember the folder structure, copy an older post, or manually
+update a homepage list every time I add something.
+
+The writing itself stays simple. Rewrap keeps the line length at 72
+columns, the editor inserts a final newline if needed, and the site
+renderer has an 80-character safety wrap as a fallback.
+
+PREVIEWING AND PUBLISHING //
+
+The same workspace also has tasks for previewing and publishing the
+site.
+
+The preview task starts a local Astro server so I can check the page
+before it goes live. The publishing task shows me the changed files,
+runs Astro's checks, checks the project with Biome, and then builds the
+site.
+
+If something fails, the script stops before any commit is made. If
+everything passes, it asks for a commit message, commits the changes,
+and then pushes them to the main branch.
+
+It never force-pushes, and it first checks whether the remote branch is
+ahead before doing anything. Again, the goal is not to remove every
+single manual step. It is to limit the repetitive parts while
+maintaining control of the important stuff.
+
+DEPLOYMENT //
+
+The site is built with Astro as static files and deployed through GitHub
+Pages.
+
+Cloudflare handles the domain and DNS, while the GitHub Pages address
+redirects to the custom domain. The old volume routes also redirect to
+the newer public routes. The route names are mostly cosmetic, but the
+redirects keep old links working.
+
+Because the output is static, there is no application server, database,
+or admin panel to worry about. Once the build passes and the changes are
+pushed, GitHub Pages handles the grunt work.
+
+SITE DESIGN //
+
+The design is intentionally minimal. The site uses a custom textmode
+layout, the Gohu bitmap font, a limited colour palette, and a few small
+animations for some flair.
+
+The homepage ASCII logo is a bit of a callback to the old scene .NFO
+files. The project and note pages have Conway's Game of Life in their
+headers for a fun touch. Project pages also generate their own QR codes
+in the footer from each page's URL.
+
+Most of the styling exists to support readability and a consistent
+terminal look. Rather than turning every page into a flashy demo,
+effects only exist to add character.
