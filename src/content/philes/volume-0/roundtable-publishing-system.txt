@@ -30,9 +30,8 @@ robust setup for writing plain-text Projects and Notes, previewing them
 locally, and publishing everything with one command.
 
 The goal is not to build an entire CMS. It is to keep the site fast,
-readable, and easy to maintain. It should be simple enough that posting
-doesn't turn into a series of meticulous tasks, just a sensible
-workflow.
+readable, and easy to maintain. Posting should feel like writing, not
+working through a checklist every time.
 
 HOW CONTENT WORKS //
 
@@ -85,8 +84,8 @@ and then pushes them to the main branch.
 
 It never force-pushes, and it first checks whether the remote branch is
 ahead before doing anything. Again, the goal is not to remove every
-single manual step. It is to limit the repetitive parts while
-maintaining control of the important stuff.
+single manual step. It just handles the repetitive parts while leaving
+the important decisions to me.
 
 DEPLOYMENT //
 

@@ -39,8 +39,8 @@ BACKUP PHILOSOPHY //
 A backup is only useful if I know what it contains, where it is stored,
 and how to restore it.
 
-I would much rather protect a smaller set of important data properly and
-efficiently than blindly copy everything without a clear recovery plan.
+I'd rather back up a smaller set of important data properly than blindly
+copy everything and hope I can restore it later.
 
 BACKUP LAYERS //
 

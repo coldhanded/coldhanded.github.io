@@ -54,9 +54,9 @@ SQM //
 
 Smart Queue Management uses CAKE on the WAN connection.
 
-I added it to reduce latency under load, not to chase the largest
-possible benchmark numbers. The result is a noticeably more responsive
-connection during simultaneous downloads and uploads.
+I added it to control latency under load, not chase a bigger speed-test
+number. The connection now stays responsive even when downloads and
+uploads are hammering it.
 
 DNS //
 
@@ -74,5 +74,5 @@ SECURITY //
   Nexus has no public port forwards.
   Configuration backups are created after durable network changes.
 
-The setup keeps routing, wireless, DNS, and firewall control on Firelink
-while retaining compatibility with Bell's proprietary hardware.
+Bell's box now does the bare minimum while Firelink handles the network
+I actually use.

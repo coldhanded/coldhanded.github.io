@@ -39,7 +39,7 @@ without any special software.
 
 With Docsify running on my homelab, I can also turn a plain Markdown
 file into a browsable website in seconds without a build process. That
-is incredibly useful for referencing a runbook.
+is incredibly useful when I need to pull up the runbook.
 
 HOW IT WORKS //
 
@@ -61,5 +61,5 @@ For that reason, the notes are also included in my encrypted backup
 routine, with automated cloud and manual off-site copies. That gives me
 a way back when something inevitably fucks up.
 
-This keeps the entire setup portable, readable, and under my control
-without handing it over to another big-tech account.
+The end result is boring in the best way: plain files I can read
+anywhere, back up myself, and keep out of another big tech account.

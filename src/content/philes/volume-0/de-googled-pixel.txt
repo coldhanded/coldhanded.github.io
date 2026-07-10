@@ -21,9 +21,9 @@ LAST UPDATED //
 
 Bonfire is my Pixel 10a running GrapheneOS.
 
-It replaced an older LineageOS and microG phone with a cleaner setup
-built around GrapheneOS defaults and applications that do not depend on
-Google Play services.
+It replaced an older phone running LineageOS and microG with a cleaner
+setup built around GrapheneOS defaults and apps that work without Google
+Play services.
 
 BASELINE //
 
@@ -31,7 +31,7 @@ BASELINE //
   GrapheneOS
   Bootloader relocked
   OEM unlocking disabled
-  No sandboxed Google Play installation
+  Sandboxed Google Play not installed
   GrapheneOS defaults retained unless there is a clear reason to change
 
 BROWSING //
@@ -71,5 +71,5 @@ configured as an always-on VPN.
 Android Private DNS remains on Automatic because local DNS and home.arpa
 resolution are already handled by Firelink and Nexus.
 
-The goal is to keep the phone minimal while maintaining usability,
-without adding a bunch of telemetry or background services.
+I want the phone to stay minimal without making it annoying to use or
+loading it back up with telemetry and background services.

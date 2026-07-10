@@ -22,16 +22,17 @@ relied less on one big tech company, focused more on privacy, and still
 worked well with what I use day to day.
 
 The only part I was really unsure about was app compatibility. Coming
-from a microG-based ROM, I had gotten used to depending on the Play Store
-for everything. A lot of "de-Googled" advice online still assumes Google
-Play services are present, even when an app does not seem like it should
-obviously depend on them. Some apps worked exactly as expected, some
-needed a replacement, and a few simply were not worth fighting with.
+from a microG-based ROM, I had gotten used to depending on the Play
+Store for everything. A lot of "de-Googled" advice online still assumes
+Google Play services are present, even when an app does not seem like it
+should obviously depend on them. Some apps worked exactly as expected,
+some needed a replacement, and a few simply were not worth fighting
+with.
 
-A phone is a personal thing and should be set up based on user
-preference, not what some company says you should use. This is not a
-GrapheneOS setup guide. It is just a record of what worked for me, what
-didn't, and where I had to make compromises.
+A phone is personal and should be set up around your own preferences,
+not what some company says you should use. This is not a GrapheneOS
+setup guide. It is just a record of what worked for me, what didn't, and
+where I had to make compromises.
 
 THE BEGINNING //
 
@@ -39,9 +40,10 @@ I installed GrapheneOS on a brand-new Pixel 10a and left the bootloader
 locked once the installation was complete.
 
 I also made the decision not to install sandboxed Google Play.
-GrapheneOS supports it, and I understand that certain apps require Google
-Play services to function correctly, but I wanted to see how far I could
-get without adding them back into the system. Did I really need them?
+GrapheneOS supports it, and I understand that certain apps require
+Google Play services to function correctly, but I wanted to see how far
+I could get without adding them back into the system. Did I really need
+them?
 
 My starting point was simple, since most of these apps were already part
 of my ecosystem:
@@ -54,7 +56,7 @@ of my ecosystem:
   Organic Maps for navigation
   Proton VPN for public Wi-Fi
   Syncthing and Markor for notes
-  Ultrasonic for a navidrome client
+  Ultrasonic as a navidrome client
 
 I mostly kept the GrapheneOS defaults and avoided changing settings just
 for the sake of changing them. The defaults shipped with GrapheneOS are
@@ -69,11 +71,11 @@ Vanadium handled normal browsing, Bitwarden worked with biometrics and
 autofill, Proton Authenticator restored my codes, and Thunderbird
 handled email without any obvious limitations.
 
-For local and self-hosted tools, things changed for the better.
-Syncthing kept my notes in sync whether on my LAN or through Tailscale.
-Markor gave me a simple, robust Markdown editor, ConnectBot handled SSH
-access to Nexus when needed, and LocalSend is so useful I don't know how
-I ever lived without it.
+The local and self-hosted stuff was even easier. Syncthing kept my notes
+in sync whether on my LAN or through Tailscale. Markor gave me a simple,
+robust Markdown editor, ConnectBot handled SSH access to Nexus when
+needed, and LocalSend is so useful I don't know how I ever lived without
+it.
 
 Organic Maps covered offline navigation. I downloaded my local map and
 never had any issues using it. Proton VPN worked when I needed it on
@@ -98,10 +100,10 @@ replaced YouTube, Organic Maps replaced Google Maps, and Capy replaced a
 lot of the time I previously spent scrolling through X for news.
 
 Music, however, was a little annoying at first. Chora worked on my older
-phone, and I had grown accustomed to its UI, but it had issues connecting
-on the Pixel 10a. While searching for alternatives, I found that nearly
-every other Navidrome client on F-Droid was either stale or no longer
-actively maintained.
+phone, and I had grown accustomed to its UI, but it had issues
+connecting on the Pixel 10a. While searching for alternatives, I found
+that nearly every other Navidrome client on F-Droid was either stale or
+no longer actively maintained.
 
 Ultrasonic ended up being the first reliable option. I later discovered
 Tempus, which has since become my go-to music app.
@@ -109,8 +111,8 @@ Tempus, which has since become my go-to music app.
 None of this was particularly difficult. Sure, an argument can be made
 for convenience's sake, and it did require letting go of the assumption
 that the first familiar app in an app store was automatically the best
-choice. But the time and effort spent researching alternatives is what
-paid off most in the end.
+choice. But the time and effort I spent researching alternatives paid
+off most in the end.
 
 WHAT DIDN'T WORK - THE DARK TRUTH //
 
@@ -129,11 +131,11 @@ the apps I actually rely on worked flawlessly as web apps in Vanadium. I
 never felt pressured to install sandboxed Google Play.
 
 Notifications were less predictable, which was new. Apps using their own
-background connection generally worked without issue, but apps relying
-entirely on Google's push service could be delayed or never received at
-all. That was never a huge problem for me, but it required some extra
-effort to find the right apps and set the correct battery permissions so
-they could run properly in the background.
+background connection generally worked without issue. Notifications from
+apps relying entirely on Google's push service could be delayed or never
+arrive at all. That was never a huge problem for me, but it required
+some extra effort to find the right apps and set the correct battery
+permissions so they could run properly in the background.
 
 The biggest compromise for me was obviously convenience. Google Play
 makes installation, updates, and push notifications feel almost
@@ -149,11 +151,11 @@ THE VERDICT - END OF LINE //
 
 For me, the experiment was a success.
 
-I ended up with a phone that I actually like to use, enough in fact that
-I am here writing about it. It feels fast, private, and fully functional
-without Google Play. Getting the app drawer where I wanted it took some
-extra effort. Some apps needed replacements, and others were simply not
-worth keeping or fighting with.
+I ended up with a phone I actually like using, enough that I'm here
+writing about it. It feels fast, private, and fully functional without
+Google Play. Getting the app drawer where I wanted it took some extra
+effort. Some apps needed replacements, and others were simply not worth
+keeping or fighting with.
 
 Again, this is not a tutorial. In fact, I don't think anyone should copy
 this exact setup. You should find what works for you. I'm also not

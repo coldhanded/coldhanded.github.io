@@ -67,6 +67,6 @@ No public port forwards point at Nexus.
 
 DOCUMENTATION //
 
-The source of truth is a synced Markdown runbook, aka "The Bible." A
-separate sanitized GitHub repository stores reference documentation,
-examples, and templates without secrets or raw configuration backups.
+The source of truth is a synced Markdown runbook, aka "The Bible." I
+also keep a sanitized GitHub repo with useful examples and templates,
+but none of the secrets or raw configuration backups.
