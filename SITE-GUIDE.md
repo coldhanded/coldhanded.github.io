@@ -9,17 +9,23 @@ Current reference for the `coldhanded.github.io` repository.
 - Hosting: GitHub Pages
 - Canonical domain and DNS: Cloudflare and `coldhands.net`
 - Package manager: pnpm 11.5.0 through Corepack
+- Publishing workflow: Roundtable
 
-## Daily workflow
+## Roundtable workflow
 
 Use the VS Code tasks in `.vscode/tasks.json`.
+
+Roundtable is the local publishing workflow for the site. It combines
+the VS Code tasks, content generators, preview command, validation,
+build, commit, and push scripts. The task labels use the `Roundtable:`
+prefix, while the underlying script filenames remain unchanged.
 
 ### Create a project
 
 Run:
 
 ```text
-Coldhands: New project
+Roundtable: New project
 ```
 
 This calls `new-project.cmd`, which runs `new-project.ps1`.
@@ -39,7 +45,7 @@ The generator:
 Run:
 
 ```text
-Coldhands: New note
+Roundtable: New note
 ```
 
 This calls `new-note.cmd`, which runs `new-note.ps1`.
@@ -58,7 +64,7 @@ The generator:
 Run:
 
 ```text
-Coldhands: Preview
+Roundtable: Preview
 ```
 
 This runs:
@@ -75,7 +81,7 @@ running while editing.
 Run:
 
 ```text
-Coldhands: Publish
+Roundtable: Publish
 ```
 
 This calls `publish.cmd`, which runs `publish.ps1`.
@@ -521,8 +527,8 @@ source redirect pages live under `src/pages/volume/`.
 
 | Task | File or folder |
 |---|---|
-| Add a Project | `Coldhands: New project` |
-| Add a Note | `Coldhands: New note` |
+| Add a Project | `Roundtable: New project` |
+| Add a Note | `Roundtable: New note` |
 | Edit Project content | `src/content/philes/volume-0/` |
 | Edit Note content | `src/content/philes/volume-1/` |
 | Change homepage copy or sections | `src/config/site.ts` |
