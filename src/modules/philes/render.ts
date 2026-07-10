@@ -52,7 +52,7 @@ export function renderPhileFooterPre(phile: Phile): string {
   const volumeLabel =
     phile.route.volume === 0 ? "projects" : phile.route.volume === 1 ? "notes" : `volume_${phile.route.volume}`;
 
-  return `\n\nret ${link("/", "[home]")} ${link(phile.route.volumeHref, `[${volumeLabel}]`)}\n`;
+  return `\n\n~ ret ${link("/", "[home]")} ${link(phile.route.volumeHref, `[${volumeLabel}]`)}\n`;
 }
 
 type ParsedBodyBlock =

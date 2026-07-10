@@ -14,7 +14,7 @@ export function renderVolumePre(volume: Volume): string {
   const toc = renderToc(volume);
   const postscript = volumeConfig(volume.number).postscript ?? [];
 
-  return `\n${toc}\n\n${textHtml(postscript.join("\n"))}\n\n  ret ${link("/", "[home]")}\n`;
+  return `\n${toc}\n\n${textHtml(postscript.join("\n"))}\n\n  ~ ret ${link("/", "[home]")}\n`;
 }
 
 function renderToc(volume: Volume): string {

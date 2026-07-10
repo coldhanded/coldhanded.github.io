@@ -23,7 +23,7 @@ export const defaultVolumeConfig = (number: number): VolumeConfig => ({
     by: "date",
     direction: "desc"
   },
-  postscript: ["  --[ EOF ]----------------------------------------------------------//---"]
+  postscript: ["  ──[ EOF ]──────────────────────────────────────────────────────────────────//───"]
 });
 
 export const volumeConfigs = new Map<number, VolumeConfig>([
@@ -39,7 +39,14 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
         direction: "asc"
       },
       entryPrefix: "P",
-      postscript: ["  --[ END PROJECTS ]-------------------------------------------------//---"]
+      postscript: [
+        "  ──[ EOF ]──────────────────────────────────────────────────────────────────//───",
+        "",
+        "  Focus is a matter of deciding what things",
+        "  you're not going to do.",
+        "",
+        "  - John Carmack"
+      ]
     }
   ],
   [
@@ -54,7 +61,14 @@ export const volumeConfigs = new Map<number, VolumeConfig>([
         direction: "desc"
       },
       entryPrefix: "N",
-      postscript: ["  --[ END NOTES ]----------------------------------------------------//---"]
+      postscript: [
+        "  ──[ EOF ]──────────────────────────────────────────────────────────────────//───",
+        "",
+        "  I do not always know what I want, but I do know",
+        "  what I don't want.",
+        "",
+        "  - Stanley Kubrick"
+      ]
     }
   ]
 ]);
