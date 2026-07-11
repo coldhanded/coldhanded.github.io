@@ -28,13 +28,13 @@ still requires it in the chain.
 
 ROLES //
 
-  Main router
-  Main wireless access point
-  DHCP server
-  Local DNS integration
-  Static device reservations
-  Firewall
-  Traffic shaping
+- Main router
+- Main wireless access point
+- DHCP server
+- Local DNS integration
+- Static device reservations
+- Firewall
+- Traffic shaping
 
 NETWORK DESIGN //
 
@@ -68,11 +68,11 @@ publishing them or relying on public DNS.
 
 SECURITY //
 
-  Administrative access is restricted to the LAN.
-  WAN input and forwarding remain rejected by default.
-  Router services do not listen on the upstream WAN interface.
-  Nexus has no public port forwards.
-  Configuration backups are created after durable network changes.
+- Administrative access is restricted to the LAN.
+- WAN input and forwarding remain rejected by default.
+- Router services do not listen on the upstream WAN interface.
+- Nexus has no public port forwards.
+- Configuration backups are created after durable network changes.
 
 Bell's box now does the bare minimum while Firelink handles the network
 I actually use.

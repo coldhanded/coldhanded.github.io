@@ -1,102 +1,50 @@
 # Coldhands Site Guide
 
-Current reference for the `coldhanded.github.io` repository.
+Operational reference for the `coldhanded.github.io` repository.
 
-- Local repository: `C:\Users\Cold\Projects\coldhanded.github.io`
-- Live site: `https://coldhands.net/`
-- GitHub repository: `coldhanded/coldhanded.github.io`
-- Framework: Astro 7, TypeScript, Tailwind CSS through Vite
-- Hosting: GitHub Pages
-- Canonical domain and DNS: Cloudflare and `coldhands.net`
-- Package manager: pnpm 11.5.0 through Corepack
-- Publishing workflow: Roundtable
+```text
+Local:  C:\Users\Cold\Projects\coldhanded.github.io
+Live:   https://coldhands.net/
+GitHub: coldhanded/coldhanded.github.io
+```
+
+The site uses Astro, TypeScript, Tailwind through Vite, GitHub Pages,
+and Cloudflare DNS. Tool and dependency versions are pinned in
+`package.json` and `pnpm-lock.yaml`.
 
 ## Roundtable workflow
 
-Use the VS Code tasks in `.vscode/tasks.json`.
-
-Roundtable is the local publishing workflow for the site. It combines
-the VS Code tasks, content generators, preview command, validation,
-build, commit, and push scripts. The task labels use the `Roundtable:`
-prefix, while the underlying script filenames remain unchanged.
-
-### Create a project
-
-Run:
+Use the tasks in `.vscode/tasks.json`.
 
 ```text
 Roundtable: New project
-```
-
-This calls `new-project.cmd`, which runs `new-project.ps1`.
-
-The generator:
-
-- asks for a title;
-- creates a lowercase slugged `.txt` file;
-- writes it to `src/content/philes/volume-0/`;
-- assigns the next available project `order`;
-- adds the standard project frontmatter and starter sections;
-- writes LF line endings with one final newline;
-- opens the file in the current VS Code window.
-
-### Create a note
-
-Run:
-
-```text
 Roundtable: New note
-```
-
-This calls `new-note.cmd`, which runs `new-note.ps1`.
-
-The generator:
-
-- asks for a title;
-- creates a lowercase slugged `.txt` file;
-- writes it to `src/content/philes/volume-1/`;
-- adds the standard note frontmatter and starter section;
-- writes LF line endings with one final newline;
-- opens the file in the current VS Code window.
-
-### Preview
-
-Run:
-
-```text
 Roundtable: Preview
+Roundtable: Publish
 ```
 
-This runs:
+The content tasks call the matching `.cmd` and `.ps1` files in the
+repository root. They create slugged `.txt` files with standard
+frontmatter, LF line endings, and one final newline.
+
+Projects are written to `volume-0` and receive the next available
+`order`. Notes are written to `volume-1`.
+
+Preview runs:
 
 ```powershell
 corepack pnpm dev
 ```
 
-Open the local address printed in the terminal. Keep the preview task
-running while editing.
+Publish calls `publish.cmd`, which runs `publish.ps1`. The script:
 
-### Publish
-
-Run:
-
-```text
-Roundtable: Publish
-```
-
-This calls `publish.cmd`, which runs `publish.ps1`.
-
-The publish script:
-
-1. requires the current branch to be `main`;
-2. fetches `origin/main`;
-3. stops if the remote branch has newer commits;
-4. shows all changed files;
-5. asks for confirmation;
-6. runs `corepack pnpm build`;
-7. stages all changes;
-8. asks for a commit message;
-9. commits and pushes to `origin/main`.
+1. requires the `main` branch;
+2. fetches `origin/main` and stops if the remote is ahead;
+3. shows all changes and asks for confirmation;
+4. runs `corepack pnpm build`;
+5. stages all changes;
+6. asks for a commit message;
+7. commits and pushes to `origin/main`.
 
 The build command runs:
 
@@ -114,17 +62,25 @@ For manual package commands in PowerShell, use:
 corepack pnpm <command>
 ```
 
-Do not assume a globally installed `pnpm` command is available.
+Do not assume a global `pnpm` command is available.
 
-## Content locations
+## Content
 
 ```text
 src/content/philes/volume-0/    Projects
 src/content/philes/volume-1/    Notes
 ```
 
-The internal `volume-*` folder names are retained from the original
-theme. Public routes use friendly names.
+The internal `volume-*` names come from the original theme. Public
+routes use `/projects/` and `/notes/`.
+
+Collection loading and validation:
+
+```text
+src/content.config.ts
+src/modules/philes/loader.ts
+src/modules/philes/schema.ts
+```
 
 ### Project frontmatter
 
@@ -137,7 +93,8 @@ order: 0
 ---
 ```
 
-Projects are sorted by `order` in ascending order.
+Projects sort by `order` in ascending order. Orders must be unique,
+non-negative integers.
 
 ### Note frontmatter
 
@@ -149,11 +106,9 @@ author: "cold"
 ---
 ```
 
-Notes are sorted by date in descending order.
+Notes sort by date in descending order.
 
-### Optional frontmatter
-
-The content schema also supports:
+Optional fields:
 
 ```yaml
 lang: "en"       # "en" or "zh"
@@ -161,58 +116,33 @@ slug: "custom-slug"
 redacted: false
 ```
 
-Normally, do not add these unless needed.
+The filename normally determines the URL slug. Frontmatter `title`
+controls the visible title and metadata. Optional `slug` overrides the
+filename-derived slug.
 
-## Titles, filenames, and routes
-
-These values serve different purposes:
-
-- The filename normally determines the URL slug.
-- The frontmatter `title` controls the visible title, lists, browser
-  title, and social metadata.
-- An optional frontmatter `slug` overrides the filename-derived slug.
-- A Project's `order` controls its position in project lists.
-
-Example:
-
-```text
-File:
-src/content/philes/volume-0/roundtable-publishing-system.txt
-
-Frontmatter:
-title: "Roundtable Publishing System"
-
-Public route:
-https://coldhands.net/projects/roundtable-publishing-system/
-```
-
-Renaming only the file changes the route, not the visible title.
-
-## Writing and formatting rules
+### Writing rules
 
 - Write Project and Note bodies as plain text.
-- Use section headings such as `STATUS //` and `DEPLOYMENT //`.
+- Use headings such as `STATUS //` and `DEPLOYMENT //`.
 - Manually wrap prose at 72 columns with Rewrap Revived.
 - Use `Win+Q` to rewrap the current paragraph.
 - The renderer has an 80-cell safety wrap.
-- Use LF line endings.
-- Keep exactly one final newline.
+- Use LF line endings and exactly one final newline.
 - Use two spaces for indented lists and aligned metadata.
 - Do not use em dashes.
-- Preserve the personal, direct, slightly informal writing voice.
-- Markdown inline links are not supported in article body text.
+- Keep the voice personal, direct, and slightly informal.
+- Inline Markdown links are not supported in article bodies.
 - Avoid raw URLs unless displaying the URL is intentional.
 
-Standalone images are supported with a line such as:
+Standalone images use:
 
 ```text
 ![Useful alt text](/images/example.png)
 ```
 
-The image line must stand on its own. The alt text is also used as the
-caption.
+The image line must stand alone. Its alt text is also the caption.
 
-Formatting rules are reinforced by:
+Editor rules live in:
 
 ```text
 .editorconfig
@@ -222,45 +152,70 @@ Formatting rules are reinforced by:
 
 ## Homepage
 
-Primary homepage configuration:
+Homepage content and ordering are configured in:
 
 ```text
 src/config/site.ts
 ```
 
-Edit this file for:
+It controls TL;DR copy, section labels, About and contact links, and the
+ASCII logo.
 
-- TL;DR text;
-- homepage section names;
-- GitHub, email, and Signal links;
-- the ASCII logo;
-- homepage section ordering.
-
-Current homepage sections are:
-
-```text
-TL;DR
-.TXT
-PROJ
-COMMS
-```
-
-The `PROJ` list is generated automatically from Volume 0 frontmatter
-order. Do not hard-code individual project links into the homepage.
-
-Homepage rendering logic:
+The Project list is generated from Volume 0 frontmatter. Do not
+hard-code individual Project links into the homepage.
 
 ```text
 src/components/home/HomeScreen.astro
-```
-
-Homepage route:
-
-```text
 src/pages/index.astro
 ```
 
-## Projects, Notes, and route mapping
+## About page
+
+The About page is separate from the content collection.
+
+```text
+src/pages/about.astro
+src/components/about/AboutScreen.astro
+src/modules/about/render.ts
+src/modules/textmode/glitch/about.ts
+src/styles/modules/about.css
+public/images/aboutme.webp
+```
+
+- `about.astro` supplies metadata and the textmode layout.
+- `AboutScreen.astro` combines the frame and image layers.
+- `render.ts` owns the heading, copy, frame, footer, and return link.
+- `glitch/about.ts` owns intermittent glitch behavior.
+- `about.css` owns image placement, clipping, blends, and reduced
+  motion.
+
+The outer frame and image outline are textmode characters generated in
+`render.ts`. Do not replace them with CSS borders.
+
+The image sits beneath the rendered outline. Its geometry in
+`about.css` is deliberately calibrated for equal padding. Do not
+change it while editing copy or glitch behavior.
+
+About image contract:
+
+```text
+Path:   public/images/aboutme.webp
+Format: WebP
+Shape:  square
+Target: 500 x 500 pixels
+Fit:    cover, centered
+```
+
+Replace the file at the same path when changing the photo. Do not alter
+the source aspect ratio to correct page alignment.
+
+Duplicate glitch layers and the scanline are decorative. They must
+remain disabled for `prefers-reduced-motion: reduce`.
+
+The homepage link is in `src/config/site.ts`. The sitemap entry is in
+`src/modules/seo/xml.ts`.
+
+## Projects, Notes, and articles
 
 Volume configuration:
 
@@ -268,76 +223,47 @@ Volume configuration:
 src/config/volumes.ts
 ```
 
-Current mapping:
+It controls public paths, index headings, sorting, entry prefixes, EOF
+lines, and index quotes.
 
 ```text
 Volume 0 -> /projects/
 Volume 1 -> /notes/
 ```
 
-This file also controls:
-
-- Projects and Notes titles and subtitles;
-- list labels;
-- sorting;
-- entry prefixes;
-- index-page ending labels.
-
-Content route derivation:
+Routing and repositories:
 
 ```text
 src/modules/philes/routing.ts
-```
-
-Content loading and sorting:
-
-```text
 src/modules/philes/repository.ts
 src/modules/volumes/repository.ts
 ```
 
-Friendly route pages:
+Public route pages:
 
 ```text
 src/pages/[section]/index.astro
 src/pages/[section]/[slug]/index.astro
 ```
 
-Legacy redirect pages:
+Legacy redirects:
 
 ```text
 src/pages/volume/[volume]/index.astro
 src/pages/volume/[volume]/[slug]/index.astro
 ```
 
-Legacy routes redirect as follows:
+Keep the legacy redirect pages unless the old `/volume/` URLs are
+intentionally retired.
+
+Index rendering:
 
 ```text
-/volume/0/          -> /projects/
-/volume/0/<slug>/   -> /projects/<slug>/
-/volume/1/          -> /notes/
-/volume/1/<slug>/   -> /notes/<slug>/
+src/components/volume/VolumeScreen.astro
+src/modules/volumes/render.ts
 ```
 
-Do not remove the redirect pages unless the old URLs are intentionally
-being retired.
-
-## Article rendering
-
-Content collection definition:
-
-```text
-src/content.config.ts
-```
-
-Loader and frontmatter parsing:
-
-```text
-src/modules/philes/loader.ts
-src/modules/philes/schema.ts
-```
-
-Article shell and body rendering:
+Article rendering:
 
 ```text
 src/components/phile/PhileShell.astro
@@ -345,9 +271,8 @@ src/modules/philes/render.ts
 src/modules/textmode/ansi/render.ts
 ```
 
-The renderer is intentionally not a general Markdown renderer. It
-handles plain text, the site's ANSI-style colour markers, and standalone
-images.
+The article renderer handles plain text, ANSI-style markers, and
+standalone images. It is not a general Markdown renderer.
 
 Project QR codes:
 
@@ -356,46 +281,32 @@ src/components/phile/ProjectQrCode.astro
 src/pages/[section]/[slug]/index.astro
 ```
 
-QR codes are:
+They are generated from canonical Project URLs, shown only for Volume
+0, and hidden at widths of 760 px and below.
 
-- generated statically from each Project's canonical URL;
-- shown only for Volume 0 Projects;
-- white on the page background;
-- hidden at widths of 760 px and below.
-
-## Layout, metadata, and design
-
-Base HTML, canonical URLs, browser titles, Open Graph metadata, RSS
-discovery, and global assets:
+## Layout and design
 
 ```text
 src/layouts/base/BaseLayout.astro
-```
-
-Textmode page wrapper:
-
-```text
 src/layouts/textmode/TextmodeLayout.astro
-```
-
-Canonical site URL and Vite/Tailwind setup:
-
-```text
 astro.config.mjs
 ```
 
-The canonical site value must remain:
+`BaseLayout.astro` handles browser titles, canonical URLs, Open Graph
+metadata, RSS discovery, and global assets.
+
+The canonical site value in `astro.config.mjs` must remain:
 
 ```text
 https://coldhands.net/
 ```
 
-Main design configuration:
+Design configuration:
 
 ```text
-src/config/appearance.ts    Colours, font URL, and sizing
-src/config/effects.ts       Particles and homepage glitch effect
-src/config/textmode.ts      Column widths and responsive breakpoint
+src/config/appearance.ts    Colours, font, and sizing
+src/config/effects.ts       Particles and glitch timing
+src/config/textmode.ts      Text widths and mobile breakpoint
 src/config/index.ts         Config exports
 ```
 
@@ -409,97 +320,75 @@ Important style modules:
 
 ```text
 src/styles/modules/home.css
+src/styles/modules/about.css
 src/styles/modules/phile.css
 src/styles/modules/life.css
 src/styles/modules/particles.css
 src/styles/modules/responsive.css
 ```
 
-The main mobile breakpoint is 760 px. Mobile behaviour is already
-intentional, so avoid broad responsive changes without checking desktop
-and mobile separately.
+The main mobile breakpoint is 760 px. Check desktop and mobile
+separately before changing shared sizing or responsive rules.
 
-## Favicon and fonts
+## Metadata and assets
 
-Current favicon:
+RSS, sitemap, robots, and 404:
+
+```text
+src/pages/rss.xml.ts
+src/pages/sitemap.xml.ts
+src/pages/robots.txt.ts
+src/pages/404.astro
+src/modules/seo/http.ts
+src/modules/seo/xml.ts
+```
+
+Content entries come from the same repositories used by site pages.
+Static routes such as `/about/` are listed in
+`src/modules/seo/xml.ts`.
+
+Favicon and source fonts:
 
 ```text
 public/favicon.svg
-```
-
-Source fonts:
-
-```text
 fonts/gohu.woff
 fonts/wqy-zenhei-sharp-0.9.45.ttf
 ```
 
-Generated browser font:
+Generated font assets:
 
 ```text
 public/fonts/gohu-subset.woff
+public/assets/cjk/
 ```
 
-Font build scripts:
-
-```text
-scripts/subset-fonts.mjs
-scripts/build-cjk-atlas.mjs
-```
-
-To regenerate font assets:
+Regenerate them with:
 
 ```powershell
 corepack pnpm assets:fonts
 ```
 
-Edit the source font inputs or generation scripts, not the generated
-subset or CJK atlas files.
+Edit source fonts or generation scripts, not generated font assets.
 
-## RSS, sitemap, and 404 page
+## Build and deployment
 
-```text
-src/pages/rss.xml.ts
-src/pages/sitemap.xml.ts
-src/pages/404.astro
-```
-
-RSS and sitemap entries are generated from the same content repository
-used by the site pages.
-
-## Build and code-quality configuration
+Important configuration:
 
 ```text
-package.json          Scripts and dependencies
-pnpm-lock.yaml        Locked dependency versions
-pnpm-workspace.yaml   pnpm workspace configuration
-biome.json            Formatter and linter configuration
-tsconfig.json         TypeScript configuration
-.editorconfig         Line endings and content indentation
-.gitattributes        Git text normalization
-.vscode/settings.json Editor and Rewrap settings
-.vscode/tasks.json    New, preview, and publish tasks
-```
-
-Biome checks source files listed in `biome.json`. The `.txt` content
-files are governed by EditorConfig, Rewrap, the content loader, and the
-80-cell renderer safety wrap.
-
-## Deployment
-
-GitHub Pages deployment workflow:
-
-```text
+package.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
+biome.json
+tsconfig.json
+.editorconfig
+.gitattributes
+.vscode/settings.json
+.vscode/tasks.json
 .github/workflows/deploy.yml
 ```
 
 A push to `main` triggers the Astro build and GitHub Pages deployment.
-
-Cloudflare handles the domain and DNS outside this repository. Do not
-change Cloudflare Email Routing or add mail-provider DNS records as part
-of normal site work.
-
-## Generated files and folders
+Cloudflare handles the domain and DNS outside this repository.
 
 Do not manually edit:
 
@@ -510,84 +399,30 @@ node_modules/
 .vite/
 public/assets/cjk/
 public/fonts/gohu-subset.woff
-pnpm-lock.yaml
 ```
 
-Notes:
+`pnpm-lock.yaml` should change only through pnpm.
 
-- `.astro/`, `dist/`, `node_modules/`, and `.vite/` are generated.
-- `public/assets/cjk/` is generated by the CJK atlas script.
-- `public/fonts/gohu-subset.woff` is generated from `fonts/gohu.woff`.
-- `pnpm-lock.yaml` should be changed only by pnpm.
+## Change map
 
-Files under `dist/volume/` are generated legacy redirect output. The
-source redirect pages live under `src/pages/volume/`.
-
-## Common change map
-
-| Task | File or folder |
-|---|---|
-| Add a Project | `Roundtable: New project` |
-| Add a Note | `Roundtable: New note` |
-| Edit Project content | `src/content/philes/volume-0/` |
-| Edit Note content | `src/content/philes/volume-1/` |
-| Change homepage copy or sections | `src/config/site.ts` |
-| Change Projects or Notes labels/sorting | `src/config/volumes.ts` |
-| Change route derivation | `src/modules/philes/routing.ts` |
-| Change article rendering | `src/modules/philes/render.ts` |
-| Change colours or font sizing | `src/config/appearance.ts` |
-| Change particles or glitch behaviour | `src/config/effects.ts` |
-| Change text widths | `src/config/textmode.ts` |
-| Change article CSS | `src/styles/modules/phile.css` |
-| Change mobile CSS | `src/styles/modules/responsive.css` |
-| Change favicon | `public/favicon.svg` |
-| Change Project QR code | `src/components/phile/ProjectQrCode.astro` |
-| Change browser/social metadata | `src/layouts/base/BaseLayout.astro` |
-| Change deployment | `.github/workflows/deploy.yml` |
-
-## Quick troubleshooting
-
-### `pnpm` is not recognized
-
-Use:
-
-```powershell
-corepack pnpm <command>
-```
-
-### A Project has the wrong visible name
-
-Change its frontmatter `title`.
-
-### A Project has the wrong URL
-
-Change its filename or optional frontmatter `slug`.
-
-### A Project appears in the wrong position
-
-Check its frontmatter `order`. Project orders should be unique,
-non-negative integers.
-
-### A Note appears in the wrong position
-
-Check its frontmatter `date`.
-
-### A new Project is missing from the homepage
-
-Confirm that:
-
-- it is a `.txt` file under `volume-0`;
-- its frontmatter is valid;
-- its `order` is valid and unique;
-- the preview terminal shows no content or build error.
-
-The homepage list is automatic. Do not add the link manually.
-
-### Publishing stops before committing
-
-Read the terminal message. The script intentionally stops when:
-
-- the current branch is not `main`;
-- the remote branch is ahead;
-- the build or checks fail;
-- the commit message is empty.
+- Add a Project: `Roundtable: New project`
+- Add a Note: `Roundtable: New note`
+- Edit Projects: `src/content/philes/volume-0/`
+- Edit Notes: `src/content/philes/volume-1/`
+- Homepage content: `src/config/site.ts`
+- About copy or frame: `src/modules/about/render.ts`
+- About image markup: `src/components/about/AboutScreen.astro`
+- About image alignment: `src/styles/modules/about.css`
+- About glitch: `src/modules/textmode/glitch/about.ts`
+- Projects and Notes configuration: `src/config/volumes.ts`
+- Route derivation: `src/modules/philes/routing.ts`
+- Article rendering: `src/modules/philes/render.ts`
+- Colours and sizing: `src/config/appearance.ts`
+- Shared effects: `src/config/effects.ts`
+- Text widths: `src/config/textmode.ts`
+- Mobile CSS: `src/styles/modules/responsive.css`
+- Favicon: `public/favicon.svg`
+- Project QR codes: `src/components/phile/ProjectQrCode.astro`
+- Browser and social metadata: `src/layouts/base/BaseLayout.astro`
+- RSS and sitemap XML: `src/modules/seo/xml.ts`
+- Deployment: `.github/workflows/deploy.yml`
