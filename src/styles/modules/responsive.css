@@ -1,6 +1,7 @@
 @media (max-width: 760px) {
   :root {
     --mobile-scale: 0.95;
+    --responsive-scale: min(var(--mobile-scale), var(--fit-scale));
   }
 
   body {
@@ -23,12 +24,25 @@
   .textmode-wrap {
     max-width: none;
     overflow-x: visible;
-    zoom: min(var(--mobile-scale), var(--fit-scale));
+    transform: scale(var(--responsive-scale));
+    transform-origin: top center;
   }
 
   .home-shell {
-    transform: none;
-    zoom: min(var(--mobile-scale), var(--fit-scale));
+    transform: scale(var(--responsive-scale));
+    transform-origin: top center;
+  }
+
+  @supports (zoom: min(1, 1)) {
+    .textmode-wrap {
+      transform: none;
+      zoom: var(--responsive-scale);
+    }
+
+    .home-shell {
+      transform: none;
+      zoom: var(--responsive-scale);
+    }
   }
 
   .home-pre,
