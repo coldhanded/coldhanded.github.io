@@ -11,10 +11,10 @@ const paragraphWidth = contentWidth - 4;
 
 const aboutParagraphs = [
   "Cold.",
-  "I build small, practical systems and like understanding how the things I use actually work.",
-  "I mostly write about self-hosting, networking, privacy, open software, and keeping control of my own data.",
-  "This site is where I document projects, record what worked, and keep useful information somewhere I control.",
-  "Outside of that, I spend a lot of time with music, games, old hardware, and whatever project has distracted me that week."
+  "I build small, practical systems and like knowing how the things I use actually work.",
+  "I write about self-hosting, networking, privacy, open-source software, and keeping control of my own data.",
+  "This site is where I document projects, write down what worked, and keep useful information somewhere I control.",
+  "Outside of that, I am usually listening to music, playing games, messing with old hardware, or getting distracted by whatever project grabbed my attention that week."
 ];
 
 const postscript = [
@@ -39,7 +39,7 @@ function renderAboutFrame(): string {
     ...imageFrame.slice(0, 14).map((line) => `${" ".repeat(artIndent)}${line}`),
     `┌${"─".repeat(artIndent - 1)}${imageFrame[14]}`,
     `│ ${padCells("", artIndent - 2)}${imageFrame[15]}`,
-    `│ ${padCells("[ About ] - The person behind the terminal.", artIndent - 2)}${imageFrame[16]}`,
+    `│ ${padCells("[ About ] - A little context.", artIndent - 2)}${imageFrame[16]}`,
     frameLine(""),
     ...contentLines.map(frameLine),
     frameLine(""),
