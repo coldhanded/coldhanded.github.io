@@ -1,0 +1,48 @@
+---
+import { renderAboutPre } from "../../modules/about/render";
+
+const aboutHtml = renderAboutPre();
+---
+
+<section class="textmode-wrap volume-wrap about-wrap">
+  <pre class="textmode-pre about-pre" set:html={aboutHtml}></pre>
+  <div class="about-image-stage" data-about-image-root>
+    <img
+      class="about-image-layer about-image-base"
+      src="/images/aboutme.webp"
+      alt="About page image"
+      width="500"
+      height="500"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      class="about-image-layer about-image-glitch about-image-glitch-a"
+      src="/images/aboutme.webp"
+      alt=""
+      width="500"
+      height="500"
+      aria-hidden="true"
+    />
+    <img
+      class="about-image-layer about-image-glitch about-image-glitch-b"
+      src="/images/aboutme.webp"
+      alt=""
+      width="500"
+      height="500"
+      aria-hidden="true"
+    />
+  </div>
+</section>
+
+<script>
+  import { initAboutImageGlitch } from "../../modules/textmode/glitch/about";
+
+  window.addEventListener(
+    "load",
+    () => {
+      window.setTimeout(initAboutImageGlitch, 1200);
+    },
+    { once: true, passive: true }
+  );
+</script>

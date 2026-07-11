@@ -55,6 +55,7 @@ ${entries.map((entry) => renderSitemapEntry(site, entry)).join("\n")}
 export function sitemapEntries(volumes: Volume[], philes: Phile[]): SitemapEntry[] {
   return [
     { href: "/" },
+    { href: "/about/" },
     { href: "/rss.xml" },
     ...volumes.map((volume) => ({
       href: volume.href

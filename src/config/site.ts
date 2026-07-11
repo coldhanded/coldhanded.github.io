@@ -49,6 +49,10 @@ export const siteConfig: SiteConfig = {
           label: "Projects, ideas, and notes from things I build and use."
         },
         {
+          label: "About",
+          href: "/about/"
+        },
+        {
           label: "GitHub",
           linkLabel: "@coldhanded",
           href: "https://github.com/coldhanded",

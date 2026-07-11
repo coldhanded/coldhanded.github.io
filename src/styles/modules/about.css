@@ -1,0 +1,88 @@
+.about-wrap {
+  position: relative;
+}
+
+.about-pre {
+  position: relative;
+  z-index: 3;
+}
+
+.about-image-stage {
+  position: absolute;
+  top: calc(var(--text-size) * 0.75 - 2px);
+  left: calc(var(--text-cell) * 61 - 1px);
+  z-index: 1;
+  width: calc(var(--text-cell) * 23 + 1px);
+  height: calc(var(--text-size) * 15.75 - 1px);
+  overflow: hidden;
+  background: var(--bg);
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.about-image-stage::before {
+  position: absolute;
+  top: var(--about-scan-top, 0);
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: var(--about-scan-height, 0);
+  background: var(--link);
+  mix-blend-mode: screen;
+  opacity: 0;
+  content: "";
+}
+
+.about-image-stage.is-glitching::before {
+  opacity: var(--about-scan-opacity, 0.1);
+}
+
+.about-image-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+}
+
+.about-image-base {
+  z-index: 1;
+  transform: translate(var(--about-base-shift-x, 0), var(--about-base-shift-y, 0));
+}
+
+.about-image-glitch {
+  z-index: 2;
+  opacity: 0;
+}
+
+.about-image-glitch-a {
+  filter: contrast(1.45) brightness(1.24);
+  mix-blend-mode: screen;
+  clip-path: inset(var(--about-glitch-a-top, 0) 0 var(--about-glitch-a-bottom, 100%) 0);
+  transform: translate(var(--about-glitch-a-shift-x, 0), var(--about-glitch-a-shift-y, 0));
+}
+
+.about-image-glitch-b {
+  filter: contrast(1.45) brightness(0.62);
+  mix-blend-mode: multiply;
+  clip-path: inset(var(--about-glitch-b-top, 0) 0 var(--about-glitch-b-bottom, 100%) 0);
+  transform: translate(var(--about-glitch-b-shift-x, 0), var(--about-glitch-b-shift-y, 0));
+}
+
+.about-image-stage.is-glitching .about-image-glitch-a {
+  opacity: var(--about-glitch-a-opacity, 0.32);
+}
+
+.about-image-stage.is-glitching .about-image-glitch-b {
+  opacity: var(--about-glitch-b-opacity, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-image-glitch,
+  .about-image-stage::before {
+    display: none;
+  }
+}
