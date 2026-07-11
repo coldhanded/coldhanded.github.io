@@ -13,7 +13,6 @@ PLATFORM //
 
   Pixel 10a
   GrapheneOS
-  No sandboxed Google Play
 
 LAST UPDATED //
 
@@ -48,11 +47,15 @@ Google Play services or mandatory accounts.
 
 The current setup includes:
 
+  Bitwarden
   Capy Reader
   HeliBoard
   Markor
+  Organic Maps
+  Proton Authenticator
   Syncthing
   Tempus
+  Thunderbird
   Vanadium
 
 NOTES AND FILES //
@@ -67,6 +70,9 @@ NETWORKING //
 
 Tailscale is available when I need private remote access, but it is not
 configured as an always-on VPN.
+
+Proton VPN covers public Wi-Fi when I need it, but like Tailscale, it
+isn't running all the time either.
 
 Android Private DNS remains on Automatic because local DNS and home.arpa
 resolution are already handled by Firelink and Nexus.

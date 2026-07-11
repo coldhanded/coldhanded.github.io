@@ -45,12 +45,18 @@ copy everything and hope I can restore it later.
 BACKUP LAYERS //
 
 The first layer is an automated cloud backup. Backrest manages encrypted
-Restic snapshots and sends the important configuration and service data
-to Backblaze B2 on a set schedule.
+Restic snapshots and sends them to Backblaze B2 every day at 4:30 AM
+local time. The scope stays deliberately small: system config in /opt
+and /etc, Docker volumes, and the notes and backups folders inside my
+Nexus Sync directory. Retention keeps 7 daily snapshots, 4 weekly, and 3
+monthly, with an automated integrity check and prune running once a
+month on top of the daily backup itself.
 
-The second layer is a manual encrypted USB backup. It covers the same
-kind of critical data, but the drive is stored off-site when it is not
-being updated.
+The second layer is a manual encrypted USB backup. There is no fixed
+schedule for it. I run it whenever I think of it, and it exists purely
+as a failsafe: the drive, a Kingston DataTraveler, sits in secure
+off-site storage the rest of the time, covering the same kind of
+critical data as the cloud layer in case of a real disaster.
 
 Syncthing helps move notes and other important files between devices,
 but it is not treated as a backup. A deletion can sync just as easily as
@@ -66,7 +72,10 @@ service data.
 
 Backing up everything would increase storage use, transfer time, and
 cost without improving recovery where it matters most. I do not need 15
-copies of Akira stored across several drives.
+copies of Akira stored across several drives. Keeping the scope this
+tight also means the entire cloud backup comfortably fits inside
+Backblaze B2's free 10 GB tier, which is a decent forcing function for
+staying honest about what actually needs protecting.
 
 I am also not the type of person to hoard a massive library of unwatched
 media just to fill hard drive space. I keep a relatively small backlog,
@@ -78,6 +87,9 @@ RESTORE TESTING //
 A backup is only useful if I can actually get the data back. I
 occasionally roleplay a disaster by restoring a small file or folder
 into an isolated location, then verify the repository afterward.
+Backrest's own monthly check and prune adds another layer on top of
+that, validating the repository itself even on the months I don't
+manually test a restore.
 
 A little excessive? Possibly, but it gives me peace of mind instead of
 assuming a successful backup job means recovery will always work.

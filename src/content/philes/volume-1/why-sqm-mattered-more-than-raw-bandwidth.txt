@@ -16,11 +16,11 @@ under load.
 
 WHAT THE NUMBERS SAID //
 
-Speed test results looked fine for my current ISP plan. Tests showed 95
-to 100 Mbps down and about 11 Mbps up. Not great by any means, but close
-to what I was paying for.
+Speed test results looked fine for my current ISP plan. A Cloudflare
+speed test showed 95 to 100 Mbps down and about 11 Mbps up. Not great by
+any means, but close to what I was paying for.
 
-The problem showed up under load, a phenomenon called bufferbloat. Idle
+The problem showed up under load: a phenomenon called bufferbloat. Idle
 latency was normal, usually somewhere around 20 to 30 ms, but even
 moderate upload traffic could push loaded latency past 400 ms. One test
 measured 455 ms. This was not okay.
@@ -34,10 +34,11 @@ THE CHANGE //
 
 The ISP gateway remained upstream because Bell forces me to keep their
 garbage hardware in the chain, but routing and wireless duties were
-moved to a TP-Link Archer AX23 running OpenWrt.
+moved to a TP-Link Archer AX23 running OpenWrt. I named it Firelink,
+following the same naming scheme as everything else on my network.
 
 SQM was enabled on the WAN using CAKE. I set the limits slightly below
-my actual line speed so the AX23 became the bottleneck and could manage
+my actual line speed so Firelink became the bottleneck and could manage
 the queue instead of letting it form somewhere upstream.
 
 THE SETTINGS //
@@ -55,26 +56,29 @@ upload limit back far enough for Firelink to control the queue.
 
 WHY IT HELPED //
 
-Without smart queue management, one large transfer can fill up the
-available buffer and leave the smaller packets waiting behind it. SQM
-now controls that queue, so traffic remains responsive even while the
-connection is under heavy load.
+Without smart queue management, one large transfer fills up the
+available buffer, and everything else queued behind it, whether that's a
+game packet or a page load, just has to wait. Once Firelink was
+enforcing the queue instead of letting it back up somewhere upstream,
+that stopped happening.
 
 THE TRADE-OFF //
 
-SQM can slightly reduce the highest number shown by a bandwidth
-benchmark because the router keeps traffic beneath the configured
-limits.
+The cost is a slightly lower number on a raw bandwidth benchmark, since
+the router is deliberately keeping traffic under the configured limits
+instead of letting it burst as high as the line allows.
 
-That trade was clearly worth it though. Maximum throughput mattered less
-than keeping the connection responsive during normal mixed use.
+That trade was clearly worth it. A benchmark number doesn't mean much if
+the connection stutters every time someone else on the network kicks off
+a download. Consistency mattered more than the ceiling.
 
 RESULT //
 
 The difference was obvious right away.
 
-Across 17 recorded tests, idle latency averaged around 8 ms. Loaded
-download and upload latency both averaged around 9 ms instead of
+I set up Speedtest Tracker on Nexus to run daily and keep a proper
+record instead of relying on one-off tests. Across 17 recorded runs,
+loaded download and upload latency both averaged around 9 ms instead of
 climbing past 400 ms.
 
 Speeds settled around 90 Mbps down and 8.5 Mbps up. I gave up some peak

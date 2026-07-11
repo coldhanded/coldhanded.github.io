@@ -24,10 +24,9 @@ worked well with what I use day to day.
 The only part I was really unsure about was app compatibility. Coming
 from a microG-based ROM, I had gotten used to depending on the Play
 Store for everything. A lot of "de-Googled" advice online still assumes
-Google Play services are present, even when an app does not seem like it
-should obviously depend on them. Some apps worked exactly as expected,
-some needed a replacement, and a few simply were not worth fighting
-with.
+Google Play is there somewhere, even for apps that shouldn't obviously
+need it. Some apps worked exactly as expected, some needed a
+replacement, and a few simply were not worth fighting with.
 
 A phone is personal and should be set up around your own preferences,
 not what some company says you should use. This is not a GrapheneOS
@@ -38,6 +37,10 @@ THE BEGINNING //
 
 I installed GrapheneOS on a brand-new Pixel 10a and left the bootloader
 locked once the installation was complete.
+
+Migrating over was trivial. My contacts had never been tied to a Google
+account in the first place, just saved locally on my old phone, so I
+just had to import them as a .vcf file to the new device.
 
 I also made the decision not to install sandboxed Google Play.
 GrapheneOS supports it, and I understand that certain apps require
@@ -56,7 +59,7 @@ of my ecosystem:
   Organic Maps for navigation
   Proton VPN for public Wi-Fi
   Syncthing and Markor for notes
-  Ultrasonic as a navidrome client
+  Chora as a Navidrome client
 
 I mostly kept the GrapheneOS defaults and avoided changing settings just
 for the sake of changing them. The defaults shipped with GrapheneOS are
@@ -71,6 +74,14 @@ Vanadium handled normal browsing, Bitwarden worked with biometrics and
 autofill, Proton Authenticator restored my codes, and Thunderbird
 handled email without any obvious limitations.
 
+Basic phone functionality was never in question either. Calls, texts,
+and network settings were all detected automatically with no drops, and
+GPS locked my position without any of the accuracy problems I'd read
+about beforehand. The camera held up too. I don't take a ton of photos,
+but I haven't noticed any quality drop compared to the stock camera app.
+The one built into GrapheneOS is more than enough for what I actually
+use it for.
+
 The local and self-hosted stuff was even easier. Syncthing kept my notes
 in sync whether on my LAN or through Tailscale. Markor gave me a simple,
 robust Markdown editor, ConnectBot handled SSH access to Nexus when
@@ -82,8 +93,8 @@ never had any issues using it. Proton VPN worked when I needed it on
 sketchy public Wi-Fi, and Capy gave me a clean RSS reader for toilet
 scrolling, replacing most of the news browsing I used to do through X.
 
-Ultrasonic connected to my Navidrome server without issue and gave me
-access to my music library from either the LAN or mobile data through
+Tempus connected to my Navidrome server without issue and gave me access
+to my music library from either the LAN or mobile data through
 Tailscale.
 
 None of these apps have made me feel constrained or like I was using an
@@ -105,14 +116,21 @@ connecting on the Pixel 10a. While searching for alternatives, I found
 that nearly every other Navidrome client on F-Droid was either stale or
 no longer actively maintained.
 
-Ultrasonic ended up being the first reliable option. I later discovered
-Tempus, which has since become my go-to music app.
+Ultrasonic ended up being the first reliable option, no connection
+issues and easy to use. I later switched to Tempus, which has a cleaner
+UI than either Chora or Ultrasonic and has been my go-to music app
+since.
+
+The ChatGPT app was another easy enough swap once I looked into it. It
+requires Google Play services just to log in, and the web app felt laggy
+inside Vanadium, so I found a lighter wrapper called gptAssist on
+F-Droid instead. Turned out better than either of the original options.
 
 None of this was particularly difficult. Sure, an argument can be made
 for convenience's sake, and it did require letting go of the assumption
 that the first familiar app in an app store was automatically the best
 choice. But the time and effort I spent researching alternatives paid
-off most in the end.
+off in the end.
 
 WHAT DIDN'T WORK - THE DARK TRUTH //
 
@@ -121,21 +139,41 @@ effort or the headache.
 
 Some just straight up refused to run without Google Play services.
 Others would open, but with key features like notifications, location
-access, or account logins broken. This was the point where I had to
-decide whether having the app was actually necessary or whether I was
-just used to seeing it in my app drawer.
+access, or account logins broken.
+
+Discord was the clearest example. The web app through Vanadium never
+delivered notifications properly, and none of the open source
+alternatives I looked into were good enough replacements. In the end I
+installed the actual Discord app through Aurora Store using an anonymous
+account, which solved it completely.
+
+This was the point where I had to decide whether having the app was
+actually necessary or whether I was just used to seeing it in my app
+drawer. Smart Life made that decision easy. I used it to control some
+Teckin smart bulbs, but between the account requirements and general app
+bloat, it wasn't worth fighting for. I ditched both the app and the
+bulbs, which weren't great to begin with, and I'm planning on running
+smart lighting through Home Assistant on my homelab server instead.
 
 Banking and payment apps were the area where I expected the most pain.
 Compatibility varied based on the research I had done, but surprisingly,
-the apps I actually rely on worked flawlessly as web apps in Vanadium. I
-never felt pressured to install sandboxed Google Play.
+the apps I actually rely on worked flawlessly as web apps in Vanadium.
+Steam wasn't an issue either, since they offer a direct APK download for
+the authenticator. I never felt pressured to install sandboxed Google
+Play.
 
-Notifications were less predictable, which was new. Apps using their own
-background connection generally worked without issue. Notifications from
-apps relying entirely on Google's push service could be delayed or never
-arrive at all. That was never a huge problem for me, but it required
-some extra effort to find the right apps and set the correct battery
-permissions so they could run properly in the background.
+Notifications were less predictable in general, which caught me off
+guard. Apps using their own background connection generally worked
+without issue. Notifications from apps relying entirely on Google's push
+service could be delayed or never arrive at all. That was never a huge
+problem for me, but it required some extra effort to find the right apps
+and set the correct battery permissions so they could run properly in
+the background.
+
+Not everything got resolved. The Divoom app I use to sync the clock on
+my Timebox Evo wouldn't install at all, and I never found a workaround.
+It's still installed on my old phone running microG, which I keep around
+just to fix the time drift when it happens.
 
 The biggest compromise for me was obviously convenience. Google Play
 makes installation, updates, and push notifications feel almost

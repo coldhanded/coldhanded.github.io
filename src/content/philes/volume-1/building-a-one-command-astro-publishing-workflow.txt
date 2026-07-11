@@ -15,9 +15,9 @@ them, and push to the main branch. A simple process, sure, but why not
 make it simpler?
 
 I replaced that sequence with a small PowerShell publishing script I
-call Roundtable. A single command now checks the repository state,
-verifies that the remote branch is not ahead, runs a production build,
-asks for a commit message, and then pushes the finished change.
+call Roundtable. One command handles the whole thing now — check the
+repo, make sure the remote isn't ahead, build, ask for a commit message,
+push.
 
 THE OLD ROUTINE //
 
@@ -39,30 +39,23 @@ a broken build or accidentally overwriting newer work.
 
 WHAT IT RUNS //
 
-The script starts by showing me exactly what changed. It then runs the
-same checks I would normally run by hand:
+The script starts by showing me exactly what changed, then runs the same
+checks I would normally run by hand:
 
   astro check
   biome check .
   astro build
 
-If any check fails, publishing stops before a commit is made. If they
-all pass, the script then asks for a commit message, commits the
-changes, and pushes them to the main branch.
-
 THE SAFEGUARDS //
 
-The useful part is not just that the script saves me from typing a few
+The useful part isn't that the script saves me from typing a few
 commands. It's that it refuses to continue when something looks wrong.
 
 It checks that I am on the main branch, fetches the latest state from
-GitHub, and stops if the remote branch has newer commits. It also shows
-me every changed file and asks for confirmation before running the
-build.
-
-If Astro or Biome report a problem, nothing gets committed. If the
-commit message is empty, it stops there too. The script never
-force-pushes or automatically tries to merge newer remote changes.
+GitHub, and stops if the remote branch has newer commits. If Astro or
+Biome report a problem, nothing gets committed. If the commit message is
+empty, it stops there too. The script never force-pushes or
+automatically tries to merge newer remote changes.
 
 That makes the workflow minimal and predictable. Either everything
 passes and the site gets published, or it stops and tells me what I
@@ -89,4 +82,4 @@ difference now is that I don't have to think about the repetitive steps
 or wonder if I forgot something important every time I post or make an
 edit.
 
-That is all the automation I need.
+Not more automation — just enough to get out of my own way.
