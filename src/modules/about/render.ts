@@ -11,7 +11,7 @@ const paragraphWidth = contentWidth - 4;
 
 const aboutParagraphs = [
   "Cold.",
-  "I build small, practical systems and like knowing how the things I use actually work.",
+  "I build small, practical systems and like understanding how the things I use actually work.",
   "I write about self-hosting, networking, privacy, open-source software, and keeping control of my own data.",
   "This site is where I document projects, write down what worked, and keep useful information somewhere I control.",
   "Outside of that, I am usually listening to music, playing games, messing with old hardware, or getting distracted by whatever project grabbed my attention that week."

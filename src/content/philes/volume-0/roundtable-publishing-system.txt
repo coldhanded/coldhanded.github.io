@@ -52,7 +52,7 @@ opened, searched, and backed up like anything else.
 
 WRITING A POST //
 
-I'm generally at my main Windows PC, so I do most of the writing
+I'm generally at Hollow, my main Windows PC, so I do most of the writing
 directly in VS Code.
 
 Projects and Notes each have their own task for creating a new file. The

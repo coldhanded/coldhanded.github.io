@@ -14,7 +14,7 @@ STACK //
   Markor
   Syncthing
   Markdown
-  Windows
+  Hollow
   GrapheneOS
   Debian
 
@@ -44,11 +44,17 @@ is incredibly useful when I need to pull up the runbook.
 HOW IT WORKS //
 
 Nexus acts as the main always-on sync point. Syncthing keeps the same
-files available on my main desktop and phone.
+files available on Hollow, my main desktop, and my phone.
 
-Markor handles writing on mobile, while Windows can use any editor that
+Markor handles writing on mobile, while Hollow can use any editor that
 understands Markdown. The notes never stop being ordinary files, so they
 remain easy to copy, back up, or open somewhere else.
+
+I also keep a smaller Mobile Quick Reference file synced alongside
+everything else. Docsify is convenient, but it depends on Nexus, Caddy,
+and DNS all being up at the same time. If any of that goes down, the
+Quick Reference is still just a plain file sitting in Markor, readable
+with zero dependencies.
 
 BACKUPS //
 

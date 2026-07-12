@@ -54,14 +54,20 @@ SQM //
 
 Smart Queue Management uses CAKE on the WAN connection.
 
+  Interface:          WAN
+  Queue discipline:   CAKE
+  Queue setup script: piece_of_cake.qos
+  Download limit:     95000 kbit/s
+  Upload limit:       9000 kbit/s
+
 I added it to control latency under load, not chase a bigger speed-test
 number. The connection now stays responsive even when downloads and
 uploads are hammering it.
 
 DNS //
 
-Firelink advertises AdGuard Home on Nexus as the normal DNS resolver
-for all devices on the network.
+Firelink advertises AdGuard Home on Nexus as the normal DNS resolver for
+all devices on the network.
 
 Local home.arpa names provide clean access to private services without
 publishing them or relying on public DNS.
