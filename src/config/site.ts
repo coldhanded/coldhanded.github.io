@@ -79,13 +79,19 @@ export const siteConfig: SiteConfig = {
       title: "COMMS",
       items: [
         {
-          label: "Email: sysop@coldhands.net",
-          linkLabel: "sysop@coldhands.net",
+          label: "Email: cd /mail/",
+          linkLabel: "cd /mail/",
           href: "mailto:sysop@coldhands.net"
         },
         {
-          label: "Signal: message me",
-          linkLabel: "message me",
+          label: "Memo: cd /wall/",
+          linkLabel: "cd /wall/",
+          href: "https://wall.coldhands.net/",
+          external: true
+        },
+        {
+          label: "Signal: cd /msg/",
+          linkLabel: "cd /msg/",
           href: "https://signal.me/#eu/L5_uGA5ccCjNMzKJLvq9U9gULXRTojHS98lj-rMSG9CfsxoUERNJrpYOmgsFRaPe",
           external: true
         }
