@@ -79,6 +79,9 @@ export const siteConfig: SiteConfig = {
       title: "COMMS",
       items: [
         {
+          label: "root@coldhands.net"
+        },
+        {
           label: "Email: cd /mail/",
           linkLabel: "cd /mail/",
           href: "mailto:sysop@coldhands.net"
