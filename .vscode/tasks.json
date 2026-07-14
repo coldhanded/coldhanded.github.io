@@ -4,7 +4,13 @@
     {
       "label": "Roundtable: New note",
       "type": "shell",
-      "command": ".\\new-note.cmd",
+      "command": "./new-note.sh",
+      "windows": {
+        "command": ".\\new-note.cmd"
+      },
+      "linux": {
+        "command": "./new-note.sh"
+      },
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -18,7 +24,13 @@
     {
       "label": "Roundtable: New project",
       "type": "shell",
-      "command": ".\\new-project.cmd",
+      "command": "./new-project.sh",
+      "windows": {
+        "command": ".\\new-project.cmd"
+      },
+      "linux": {
+        "command": "./new-project.sh"
+      },
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -46,7 +58,13 @@
     {
       "label": "Roundtable: Publish",
       "type": "shell",
-      "command": ".\\publish.cmd",
+      "command": "./publish.sh",
+      "windows": {
+        "command": ".\\publish.cmd"
+      },
+      "linux": {
+        "command": "./publish.sh"
+      },
       "options": {
         "cwd": "${workspaceFolder}"
       },
