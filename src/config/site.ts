@@ -91,12 +91,6 @@ export const siteConfig: SiteConfig = {
           linkLabel: "cd /wall/",
           href: "https://wall.coldhands.net/",
           external: true
-        },
-        {
-          label: "Signal: cd /msg/",
-          linkLabel: "cd /msg/",
-          href: "https://signal.me/#eu/L5_uGA5ccCjNMzKJLvq9U9gULXRTojHS98lj-rMSG9CfsxoUERNJrpYOmgsFRaPe",
-          external: true
         }
       ]
     }
