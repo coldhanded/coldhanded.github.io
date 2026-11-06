@@ -76,7 +76,7 @@ export const siteConfig: SiteConfig = {
       }
     },
     {
-      title: "COMMS",
+      title: "COMMS1",
       items: [
         {
           label: "root@coldhands.net"
